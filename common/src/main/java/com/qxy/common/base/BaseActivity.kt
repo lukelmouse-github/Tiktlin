@@ -8,13 +8,15 @@ import com.qxy.common.ktx.bindView
 import com.qxy.common.ktx.viewLifeCycleOwner
 import timber.log.Timber
 
-abstract class BaseActivity<ActBinding : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<ActBinding : ViewDataBinding>(
+    protected @LayoutRes val layout: Int
+) : AppCompatActivity(layout) {
 
     protected lateinit var mBinding: ActBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = bindView<ActBinding>(getLayoutRes()).also {
+        mBinding = bindView<ActBinding>(layout).also {
             it.lifecycleOwner = viewLifeCycleOwner
         }
         Timber.d(javaClass.simpleName)
@@ -22,9 +24,6 @@ abstract class BaseActivity<ActBinding : ViewDataBinding> : AppCompatActivity() 
         initConfig()
         initData()
     }
-
-    @LayoutRes
-    abstract fun getLayoutRes(): Int
 
     open fun initView() {
 

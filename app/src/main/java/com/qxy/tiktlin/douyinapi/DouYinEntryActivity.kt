@@ -11,7 +11,6 @@ import com.bytedance.sdk.open.aweme.common.model.BaseReq
 import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.drake.serialize.serialize.serialize
 
 class DouYinEntryActivity : Activity(), IApiEventHandler {
     private lateinit var douYinOpenApi: DouYinOpenApi
@@ -25,20 +24,7 @@ class DouYinEntryActivity : Activity(), IApiEventHandler {
     override fun onResp(resp: BaseResp) {
         // 授权成功可以获得authCode
         if (resp.type == CommonConstants.ModeType.SEND_AUTH_RESPONSE) {
-            val response = resp as Authorization.Response
-            if (resp.isSuccess()) {
-                Toast.makeText(
-                    this, "授权成功，获得权限：" + response.grantedPermissions,
-                    Toast.LENGTH_LONG
-                ).show()
-                // authCode 存储
-                serialize("authCode" to resp.authCode)
-            } else {
-                Toast.makeText(
-                    this, "授权失败" + response.grantedPermissions,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            AuthorizationAdapter.emitAuthCode(resp as Authorization.Response)
             finish()
         }
     }

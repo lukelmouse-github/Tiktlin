@@ -20,7 +20,7 @@ interface Api {
         @Field("code") code: String,
         @Field("grant_type") grant_type: String,
         @Field("client_key") client_key: String
-    ): AccessToken
+    ): Result<AccessToken>
 
 
 }

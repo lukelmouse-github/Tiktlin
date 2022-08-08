@@ -1,7 +1,6 @@
 package com.qxy.tiktlin
 
 import android.app.Application
-import com.tencent.mmkv.MMKV
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -21,7 +20,6 @@ class App : Application() {
             androidContext(this@App)
         }
 
-        MMKV.initialize(this)
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

@@ -5,7 +5,6 @@ import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.drake.serialize.serialize.deserialize
 import com.qxy.common.network.config.AppConfig
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter.AuthCallback
 import kotlin.coroutines.resume
@@ -29,8 +28,6 @@ object AuthorizationAdapter {
     }
 
     suspend fun fetchAuthCode(activity: Activity): Result<String> {
-        val stored = deserialize<String?>("authCode")
-        if (stored != null) return Result.success(stored)
         DouYinOpenApiFactory.init(DouYinOpenConfig(AppConfig.CLIENT_KEY))
         val douyinOpenApi: DouYinOpenApi = DouYinOpenApiFactory.create(activity)
         val request: Authorization.Request = Authorization.Request()

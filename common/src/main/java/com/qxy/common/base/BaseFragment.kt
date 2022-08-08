@@ -5,40 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-// Todo Fragment 封装
-abstract class BaseFragment : Fragment() {
-    private var mBinding: ViewDataBinding? = null
+abstract class BaseFragment<Binding : ViewDataBinding>(
+    @LayoutRes protected val layout: Int
+) : Fragment(layout) {
+
+    private var _binding: Binding? = null
+    protected val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initConfig()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+        _binding = DataBindingUtil.inflate(inflater, layout, container, false)
+        initView()
+        initData()
+        return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    @LayoutRes
-    abstract fun getLayoutRes(): Int
-
-    abstract fun bindView(view: View, savedInstanceState: Bundle?): ViewDataBinding
 
     open fun initConfig() {
+    }
 
+    open fun initView() {
     }
 
     open fun initData() {
-
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        mBinding?.unbind()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

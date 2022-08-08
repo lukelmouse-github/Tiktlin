@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tiktlin</string>
+    <string name="title_home">主页</string>
+    <string name="title_me">我</string>
 </resources>

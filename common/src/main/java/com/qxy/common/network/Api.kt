@@ -2,6 +2,7 @@ package com.qxy.common.network
 
 import androidx.lifecycle.LiveData
 import com.qxy.common.model.AccessToken
+import com.qxy.common.model.UserInfo
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -13,7 +14,6 @@ import retrofit2.http.POST
 interface Api {
 
     @FormUrlEncoded
-    @Headers("Content-Type: application/x-www-form-urlencoded")
     @POST("oauth/access_token")
     suspend fun getAccessToken(
         @Field("client_secret") client_secret: String,
@@ -21,4 +21,11 @@ interface Api {
         @Field("grant_type") grant_type: String,
         @Field("client_key") client_key: String
     ): AccessToken
+
+    @FormUrlEncoded
+    @POST("/oauth/userinfo/")
+    suspend fun getUserInfo(
+        @Field("access_token") access_token: String,
+        @Field("open_id") open_id: String
+    ): UserInfo
 }

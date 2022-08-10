@@ -1,6 +1,8 @@
 package com.qxy.common.model
 
+import com.squareup.moshi.JsonClass
 import java.io.Serializable
+
 
 /*
 {
@@ -22,15 +24,16 @@ import java.io.Serializable
 data class AccessToken (
     val data: Data? = null,
     val message: String? = null
-): Serializable
+): Serializable {
+    data class Data (
+        val error_code: Long? = null,
+        val expires_in: Long? = null,
+        val open_id: String? = null,
+        val refresh_expires_in: Long? = null,
+        val refresh_token: String? = null,
+        val scope: String? = null,
+        val access_token: String? = null,
+        val description: String? = null
+    ): Serializable
+}
 
-data class Data (
-    val error_code: Long? = null,
-    val expires_in: Long? = null,
-    val open_id: String? = null,
-    val refresh_expires_in: Long? = null,
-    val refresh_token: String? = null,
-    val scope: String? = null,
-    val access_token: String? = null,
-    val description: String? = null
-): Serializable

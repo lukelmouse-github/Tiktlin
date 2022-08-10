@@ -1,16 +1,17 @@
 package com.qxy.common.network.config
 
-import android.util.Log
-import com.qxy.common.network.support.TikUtils
 import okhttp3.Connection
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
+import okio.Buffer
+import timber.log.Timber
 import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.*
-import okio.Buffer
+import java.util.zip.GZIPInputStream
+
 
 // Log 拦截器
 class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
@@ -86,11 +87,11 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
 
     private fun logIt(any: Any, tempLevel: ColorLevel? = null) {
         when (tempLevel ?: colorLevel) {
-            ColorLevel.VERBOSE -> Log.v(logTag, any.toString())
-            ColorLevel.DEBUG -> Log.d(logTag, any.toString())
-            ColorLevel.INFO -> Log.i(logTag, any.toString())
-            ColorLevel.WARN -> Log.w(logTag, any.toString())
-            ColorLevel.ERROR -> Log.e(logTag, any.toString())
+            ColorLevel.VERBOSE -> Timber.tag(logTag).v(any.toString())
+            ColorLevel.DEBUG -> Timber.tag(logTag).d(any.toString())
+            ColorLevel.INFO -> Timber.tag(logTag).i(any.toString())
+            ColorLevel.WARN -> Timber.tag(logTag).w(any.toString())
+            ColorLevel.ERROR -> Timber.tag(logTag).e(any.toString())
         }
     }
 
@@ -124,7 +125,7 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
     private fun logResponse(response: Response) {
         val sb = StringBuffer()
         sb.appendLine("\r\n")
-        sb.appendLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        sb.appendLine("响应日志打印开始<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         when (logLevel) {
             LogLevel.NONE -> {
 
@@ -138,13 +139,15 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
             LogLevel.BODY -> {
                 logHeadersRsp(response, sb)
                 kotlin.runCatching {
-                    val peekBody = response.peekBody(1024 * 1024)
-                    // Todo 待确认，函数可能出错
-                    sb.appendLine(TikUtils.unicodeDecode(peekBody.toString()))
+                    val responseBody = response.peekBody(1024 * 1024)
+                    val source = responseBody.source()
+                    val buffer = source.buffer
+                    val content = GZIPInputStream(buffer.inputStream()).bufferedReader().use { it.readText() }
+                    sb.appendLine("ResponseBody: $content")
                 }.getOrNull()
             }
         }
-        sb.appendLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        sb.appendLine("响应日志打印结束<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
         logIt(sb, ColorLevel.INFO)
     }
 
@@ -180,13 +183,13 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
         val req = request.newBuilder().build()
         val sink = Buffer()
         req.body?.writeTo(sink)
-        sb.appendLine("RequestBody: ${sink.readUtf8()}")
+        sb.appendLine("RequestBody: ${sink.readUtf8().split("&")}")
     }
 
     private fun logRequest(request: Request, connection: Connection?) {
         val sb = StringBuffer()
         sb.appendLine("\r\n")
-        sb.appendLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        sb.appendLine("请求日志打印开始>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         when (logLevel) {
             LogLevel.NONE -> {
 
@@ -201,7 +204,7 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
                 logBodyReq(request, sb, connection)
             }
         }
-        sb.appendLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+        sb.appendLine("请求日志打印结束>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         logIt(sb)
     }
 

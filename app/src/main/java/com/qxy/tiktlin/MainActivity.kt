@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.qxy.common.base.BaseActivity
+import com.qxy.common.network.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.model.MainViewModel
@@ -20,8 +21,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         lifecycleScope.launch {
             val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
             authResult.onSuccess {
-                Timber.d("授权成功，authCode = $it")
-                makeToast("授权成功")
+                AppConfig.ACCESS_TOKEN = viewModel.getAccessToken(it).toString()
+                Timber.d("授权成功\n$it")
             }.onFailure {
                 makeToast("授权失败\n${it.message}")
             }

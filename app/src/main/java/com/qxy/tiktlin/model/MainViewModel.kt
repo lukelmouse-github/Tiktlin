@@ -5,6 +5,6 @@ import com.qxy.tiktlin.Repository
 
 class MainViewModel : BaseViewModel() {
     fun getAccessToken(authCode: String) = serverAwait {
-        val accessToken = Repository.getAccessToken(authCode)
+        Repository.getAccessToken(authCode)
     }
 }

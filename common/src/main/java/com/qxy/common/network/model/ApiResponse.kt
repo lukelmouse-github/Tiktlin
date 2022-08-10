@@ -2,6 +2,8 @@ package com.qxy.common.network.model
 
 import retrofit2.Response
 
+// https://mobikul.com/how-to-use-livedata-with-retrofit/
+// ApiResponse 封装
 sealed class ApiResponse<T> {
     companion object {
         fun <T> create(response: Response<T>): ApiResponse<T> {
@@ -34,5 +36,3 @@ class ApiEmptyResponse<T> : ApiResponse<T>()
 data class ApiErrorResponse<T>(val errorCode: Int, val errorMessage: String) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(val body: T) : ApiResponse<T>()
-
-internal const val UNKNOW_ERROR_CODE = -1

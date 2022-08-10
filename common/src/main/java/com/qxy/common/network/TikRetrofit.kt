@@ -1,13 +1,11 @@
 package com.qxy.common.network
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.qxy.common.network.config.DefaultInterceptor
 import com.qxy.common.network.config.LocalCookieJar
 import com.qxy.common.network.config.LogInterceptor
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object TikRetrofit {
@@ -17,7 +15,6 @@ object TikRetrofit {
         .readTimeout(10, TimeUnit.SECONDS)
         .writeTimeout(10, TimeUnit.SECONDS)
         .retryOnConnectionFailure(true)
-        .followRedirects(false)
         .cookieJar(LocalCookieJar())
         .addNetworkInterceptor(DefaultInterceptor())
         .addNetworkInterceptor(LogInterceptor {
@@ -26,7 +23,7 @@ object TikRetrofit {
         .build()
 
     private val retrofitBuilder = Retrofit.Builder()
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(MoshiConverterFactory.create())
         .client(mOkClient)
 
     private var retrofit: Retrofit? = null
@@ -36,13 +33,6 @@ object TikRetrofit {
         return this
     }
 
-    fun <T> getService(serviceClazz: Class<T>): T {
-        if (retrofit == null) {
-            throw UninitializedPropertyAccessException("Retrofit 未初始化，需要配置 baseUrl")
-        } else {
-            return retrofit!!.create(serviceClazz)
-        }
-    }
 
     fun <T> create(serviceClass: Class<T>): T = retrofit!!.create(serviceClass)
 

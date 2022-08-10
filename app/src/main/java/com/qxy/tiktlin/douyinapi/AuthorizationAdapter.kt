@@ -7,6 +7,7 @@ import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.qxy.common.network.config.AppConfig
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter.AuthCallback
+import timber.log.Timber
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -20,8 +21,10 @@ object AuthorizationAdapter {
 
     fun emitAuthCode(response: Authorization.Response) {
         if (response.isSuccess) {
+            Timber.d("Success     authCode:${response.authCode}, errorCode:${response.errorCode}, grantedPermissions:${response.grantedPermissions}")
             mCallback.onResponse(Result.success(response.authCode))
         } else {
+            Timber.d("Error     authCode:${response.authCode}, errorCode:${response.errorCode}, grantedPermissions:${response.grantedPermissions}")
             val err = RuntimeException("错误码 ${response.errorCode} 错误信息 ${response.errorMsg}")
             mCallback.onResponse(Result.failure(err))
         }

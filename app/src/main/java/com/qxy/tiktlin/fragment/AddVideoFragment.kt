@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.qxy.common.base.BaseFragment
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.databinding.FragmentAddVideoBinding
-import com.qxy.tiktlin.model.AddVideoViewModel
+import com.qxy.tiktlin.vm.AddVideoViewModel
 
 class AddVideoFragment : BaseFragment<FragmentAddVideoBinding>(R.layout.fragment_add_video) {
 

@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.qxy.common.base.BaseFragment
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.databinding.FragmentHomeBinding
-import com.qxy.tiktlin.model.HomeViewModel
+import com.qxy.tiktlin.vm.HomeViewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 

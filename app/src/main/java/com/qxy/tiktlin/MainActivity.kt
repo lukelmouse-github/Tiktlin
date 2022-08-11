@@ -20,7 +20,7 @@ import com.qxy.tiktlin.fragment.FriendFragment
 import com.qxy.tiktlin.fragment.HomeFragment
 import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
-import com.qxy.tiktlin.model.MainViewModel
+import com.qxy.tiktlin.vm.MainViewModel
 import com.qxy.tiktlin.util.makeToast
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -39,7 +39,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                         it2
                     )
                 } }
-
                 Timber.d("授权成功\n$accessTokenData")
                 Timber.d("userInfo: $userInfo")
 

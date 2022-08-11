@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.qxy.common.base.BaseFragment
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.databinding.FragmentFriendBinding
-import com.qxy.tiktlin.model.FriendViewModel
+import com.qxy.tiktlin.vm.FriendViewModel
 
 class FriendFragment : BaseFragment<FragmentFriendBinding>(R.layout.fragment_friend) {
 

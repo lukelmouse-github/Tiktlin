@@ -1,7 +1,6 @@
-package com.qxy.tiktlin.model
+package com.qxy.tiktlin.vm
 
 import com.qxy.common.base.BaseViewModel
-import com.qxy.tiktlin.Repository
 
 class MainViewModel : BaseViewModel() {
 //    fun getAccessToken(authCode: String) = serverAwait {

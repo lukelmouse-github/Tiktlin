@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.qxy.common.base.BaseFragment
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.databinding.FragmentMessageBinding
-import com.qxy.tiktlin.model.MessageViewModel
+import com.qxy.tiktlin.vm.MessageViewModel
 
 class MessageFragment : BaseFragment<FragmentMessageBinding>(R.layout.fragment_message) {
 

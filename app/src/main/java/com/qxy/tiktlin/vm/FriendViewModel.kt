@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.model
+package com.qxy.tiktlin.vm
 
 import com.qxy.common.base.BaseViewModel
 

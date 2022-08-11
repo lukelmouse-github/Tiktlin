@@ -1,7 +1,7 @@
 package com.qxy.tiktlin.common.network
 
-import com.qxy.tiktlin.common.model.AccessToken
-import com.qxy.tiktlin.common.model.UserInfo
+import com.qxy.tiktlin.common.rsp.AccessToken
+import com.qxy.tiktlin.common.rsp.UserInfo
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST

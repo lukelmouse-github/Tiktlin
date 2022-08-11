@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.common.model
+package com.qxy.tiktlin.common.rsp
 
 import java.io.Serializable
 
@@ -21,17 +21,17 @@ import java.io.Serializable
 // https://open.douyin.com/platform/doc?doc=docs/openapi/account-permission/get-access-token
 
 data class AccessToken (
-    val data: Data? = null,
+    val data: Data = Data(),
     val message: String? = null
 ): Serializable {
     data class Data (
         val error_code: Long? = null,
         val expires_in: Long? = null,
-        val open_id: String? = null,
+        val open_id: String = "",
         val refresh_expires_in: Long? = null,
         val refresh_token: String? = null,
         val scope: String? = null,
-        val access_token: String? = null,
+        val access_token: String = "",
         val description: String? = null
     ): Serializable
 }

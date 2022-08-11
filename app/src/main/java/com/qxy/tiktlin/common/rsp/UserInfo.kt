@@ -1,6 +1,5 @@
-package com.qxy.tiktlin.common.model
+package com.qxy.tiktlin.common.rsp
 
-import androidx.room.Entity
 import java.io.Serializable
 
 /*
@@ -23,16 +22,18 @@ import java.io.Serializable
  */
 // https://open.douyin.com/platform/doc?doc=docs/openapi/account-management/get-account-open-info
 data class UserInfo(
-    val data: Data? = null
+    val data: Data
 ): Serializable {
     data class Data (
-        val avatar: String? = null,
-        val country: String? = null,
-        val gender: Long? = null,
-        val nickname: String? = null,
-        val open_id: String? = null,
-        val province: String? = null,
-        val city: String? = null,
+        val avatar: String,
+        val country: String = "中国",
+        // 性别: * `0` - 未知 * `1` - 男性 * `2` - 女性
+        val gender: Long = 0,
+        val nickname: String = "未命名",
+        val open_id: String,
+        val province: String = "北京",
+        val city: String = "北京",
+        // 错误码描述
         val description: String? = null,
         val e_account_role: String? = null,
         val error_code: Long? = null,

@@ -13,6 +13,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.common.base.BaseActivity
+import com.qxy.tiktlin.common.network.config.AppConfig
+import com.qxy.tiktlin.common.util.makeToast
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.fragment.AddVideoFragment
@@ -21,8 +23,9 @@ import com.qxy.tiktlin.fragment.HomeFragment
 import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
 import com.qxy.tiktlin.vm.MainViewModel
-import com.qxy.tiktlin.common.util.makeToast
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -33,19 +36,31 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         lifecycleScope.launch {
             val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
             authResult.onSuccess {
-                val accessTokenData = Repository.getAccessToken(it).data
-                val userInfo = accessTokenData?.open_id?.let { it1 -> accessTokenData.access_token?.let { it2 ->
-                    Repository.getUserInfo(it1,
-                        it2
-                    )
-                } }
-                Timber.d("授权成功\n$accessTokenData")
-                Timber.d("userInfo: $userInfo")
-
+                Repository.getAccessToken(it).data.let { data ->
+                    AppConfig.ACCESS_TOKEN = data.access_token
+                    AppConfig.OPEN_ID = data.open_id
+                }
             }.onFailure {
                 makeToast("授权失败\n${it.message}")
             }
+            withContext(Dispatchers.IO) {
+                val user = Repository.getUser(AppConfig.OPEN_ID)
+                withContext(Dispatchers.Main) {
+                    Timber.d("授权成功\n${AppConfig.ACCESS_TOKEN}")
+                    Timber.d("userInfo: $user")
+                }
+            }
+
         }
+    }
+
+    override fun initData() {
+        super.initData()
+//        GlobalScope.launch {
+//            val x = Repository.getUser("123")
+//        }
+
+
     }
 
     override fun initView() {

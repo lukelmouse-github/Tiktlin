@@ -11,5 +11,9 @@ object AppConfig {
 
     var ACCESS_TOKEN: String = "-1"
 
+    var OPEN_ID: String = "-1"
+
     const val AUTHORIZATION_CODE = "authorization_code"
+
+
 }

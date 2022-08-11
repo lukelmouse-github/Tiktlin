@@ -34,7 +34,11 @@ object AuthorizationAdapter {
         DouYinOpenApiFactory.init(DouYinOpenConfig(AppConfig.CLIENT_KEY))
         val douyinOpenApi: DouYinOpenApi = DouYinOpenApiFactory.create(activity)
         val request: Authorization.Request = Authorization.Request()
-        request.scope = "user_info, trial.whitelist" // 用户授权时必选权限
+
+        // 用户授权权限Scope，用逗号隔开
+        request.scope = "user_info, trial.whitelist, following.list, fans.list, fans.check, " +
+            "item.comment, data.external.item, discovery.ent, aweme.share, " +
+            "im.share"
         return suspendCoroutine { cont ->
             mCallback = AuthCallback { result -> cont.resume(result) }
             douyinOpenApi.authorize(request)

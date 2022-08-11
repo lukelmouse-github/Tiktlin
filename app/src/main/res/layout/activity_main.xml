@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
@@ -10,7 +11,7 @@
             type="com.qxy.tiktlin.model.MainViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -30,12 +31,63 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/nav_graph" />
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
+
+            <com.google.android.material.tabs.TabLayout
                 android:id="@+id/bottom_nav"
+                app:tabTextColor="@color/text_normal"
+                app:tabSelectedTextColor="@color/white"
+                android:background="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                app:tabBackground="@android:color/transparent"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabIndicatorHeight="0dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/nav_home"
+                    android:text="@string/title_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/nav_friend"
+                    android:text="@string/title_friend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/nav_add_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/nav_message"
+                    android:text="@string/title_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/nav_me"
+                    android:text="@string/title_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.tabs.TabLayout>
+
+            <ImageView
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:menu="@menu/menu_nav" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/nav_add_video"
+                android:layout_width="50dp"
+                android:layout_height="35dp" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -14,4 +14,14 @@
         android:name="com.qxy.tiktlin.fragment.MeFragment"
         android:label="@string/title_me"
         tools:layout="@layout/fragment_me" />
+    <fragment
+        android:id="@id/nav_friend"
+        android:name="com.qxy.tiktlin.fragment.FriendFragment"
+        android:label="@string/title_friend"
+        tools:layout="@layout/fragment_friend"/>
+    <fragment
+        android:id="@id/nav_message"
+        android:name="com.qxy.tiktlin.fragment.FriendFragment"
+        android:label="@string/title_friend"
+        tools:layout="@layout/fragment_friend"/>
 </navigation>

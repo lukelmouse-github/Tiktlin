@@ -1,6 +1,6 @@
 package com.qxy.tiktlin.vm
 
-import com.qxy.common.base.BaseViewModel
+import com.qxy.tiktlin.common.base.BaseViewModel
 
 class FriendViewModel : BaseViewModel() {
 

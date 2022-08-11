@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.util
+package com.qxy.tiktlin.common.util
 
 import android.os.Build
 import android.view.Menu

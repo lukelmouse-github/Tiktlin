@@ -12,7 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.qxy.common.base.BaseActivity
+import com.qxy.tiktlin.common.base.BaseActivity
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.fragment.AddVideoFragment
@@ -21,7 +21,7 @@ import com.qxy.tiktlin.fragment.HomeFragment
 import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
 import com.qxy.tiktlin.vm.MainViewModel
-import com.qxy.tiktlin.util.makeToast
+import com.qxy.tiktlin.common.util.makeToast
 import kotlinx.coroutines.launch
 import timber.log.Timber
 

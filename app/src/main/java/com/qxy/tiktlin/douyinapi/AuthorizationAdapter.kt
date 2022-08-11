@@ -5,7 +5,7 @@ import com.bytedance.sdk.open.aweme.authorize.model.Authorization
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.qxy.common.network.config.AppConfig
+import com.qxy.tiktlin.common.network.config.AppConfig
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter.AuthCallback
 import timber.log.Timber
 import kotlin.coroutines.resume

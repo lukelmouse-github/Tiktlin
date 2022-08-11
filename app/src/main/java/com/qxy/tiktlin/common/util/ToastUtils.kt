@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.util
+package com.qxy.tiktlin.common.util
 
 import android.widget.Toast
 import androidx.annotation.StringRes

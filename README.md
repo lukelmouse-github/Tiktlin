@@ -43,7 +43,7 @@ Json解析：Moshi
 
 > 整个项目采用的架构设计，可以包含流程图示例、代码示例等
 
-![mvvm](/Users/bytedance/Projects/Lukelmouse/Tiktlin/img/mvvm.png)
+![mvvm](img/mvvm.png)
 
 
 

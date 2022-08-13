@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.drake.logcat.LogCat
 import com.qxy.tiktlin.common.ktx.bindView
+import com.qxy.tiktlin.common.ktx.immediateStatusBar
 import com.qxy.tiktlin.common.ktx.viewLifeCycleOwner
 
 abstract class BaseActivity<Binding : ViewDataBinding>(
@@ -16,6 +17,8 @@ abstract class BaseActivity<Binding : ViewDataBinding>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // 沉浸式布局
+        immediateStatusBar()
         binding = bindView<Binding>(layout).also {
             it.lifecycleOwner = viewLifeCycleOwner
         }

@@ -17,7 +17,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.common.base.BaseActivity
 import com.qxy.tiktlin.common.ktx.immediateStatusBar
-import com.qxy.tiktlin.common.network.Api
 import com.qxy.tiktlin.common.network.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
@@ -84,8 +83,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 4 -> tab.text = getString(R.string.title_me)
             }
         }.attach()
+        setTabLayout()
+    }
 
-        // TabLayout 自定义view
+    // TabLayout 自定义view
+    private fun setTabLayout() {
+
         for (i in 0 until binding.bottomNav.getTabCount()) {
             val tab: TabLayout.Tab? = binding.bottomNav.getTabAt(i)
             if (tab != null) {

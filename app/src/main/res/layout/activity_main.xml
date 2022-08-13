@@ -34,8 +34,6 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/bottom_nav"
-                app:tabTextColor="@color/text_normal"
-                app:tabSelectedTextColor="@color/white"
                 android:background="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

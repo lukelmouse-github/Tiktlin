@@ -1,5 +1,6 @@
 package com.qxy.tiktlin
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Typeface
 import android.view.View
@@ -33,22 +34,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun initConfig() {
-        lifecycleScope.launch {
-            val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
-            authResult.onSuccess {
-                Repository.getAccessToken(it).data.let { data ->
-                    AppConfig.ACCESS_TOKEN = data.access_token
-                    AppConfig.OPEN_ID = data.open_id
-                    LogCat.d(AppConfig.ACCESS_TOKEN)
-                    LogCat.d(AppConfig.OPEN_ID)
-                }
-            }.onFailure {
-                toast("授权失败\n${it.message}")
-            }
-        }
+//        lifecycleScope.launch {
+//            val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
+//            authResult.onSuccess {
+//                Repository.getAccessToken(it).data.let { data ->
+//                    AppConfig.ACCESS_TOKEN = data.access_token
+//                    AppConfig.OPEN_ID = data.open_id
+//                    LogCat.d(AppConfig.ACCESS_TOKEN)
+//                    LogCat.d(AppConfig.OPEN_ID)
+//                }
+//            }.onFailure {
+//                toast("授权失败\n${it.message}")
+//            }
+//        }
 //         测试打开
-//        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
-//        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
+        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
+        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
 
     override fun initData() {
@@ -100,6 +101,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         }
 
         binding.bottomNav.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("ResourceAsColor")
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
                     when (tab.position) {
@@ -113,19 +115,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                         }
                     }
                 }
-
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
                 val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
                 val tabChildsCount = vgTab.childCount
                 for (i in 0 until tabChildsCount) {
                     val tabViewChild: View = vgTab.getChildAt(i)
                     if (tabViewChild is TextView) {
-                        tabViewChild.setTypeface(null, Typeface.BOLD)
-                        (tabViewChild as TextView).textSize = 16f
+                        if (tab.position < 3) {
+                            tabViewChild.setTextColor(Color.WHITE)
+                            tabViewChild.setTypeface(null, Typeface.BOLD)
+                            (tabViewChild as TextView).textSize = 16f
+                        } else {
+                            tabViewChild.setTextColor(Color.BLACK)
+                            tabViewChild.setTypeface(null, Typeface.BOLD)
+                            (tabViewChild as TextView).textSize = 16f
+                        }
                     }
                 }
             }
 
+            @SuppressLint("ResourceAsColor")
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
                 val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
@@ -133,7 +142,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 for (i in 0 until tabChildsCount) {
                     val tabViewChild = vgTab.getChildAt(i)
                     if (tabViewChild is TextView) {
-                        tabViewChild.textSize = 15f
+                        tabViewChild.setTextColor(Color.GRAY)
+                        tabViewChild.setTypeface(null, Typeface.NORMAL)
+                        (tabViewChild as TextView).textSize = 15f
                     }
                 }
             }

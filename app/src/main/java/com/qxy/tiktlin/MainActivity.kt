@@ -34,22 +34,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun initConfig() {
-//        lifecycleScope.launch {
-//            val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
-//            authResult.onSuccess {
-//                Repository.getAccessToken(it).data.let { data ->
-//                    AppConfig.ACCESS_TOKEN = data.access_token
-//                    AppConfig.OPEN_ID = data.open_id
-//                    LogCat.d(AppConfig.ACCESS_TOKEN)
-//                    LogCat.d(AppConfig.OPEN_ID)
-//                }
-//            }.onFailure {
-//                toast("授权失败\n${it.message}")
-//            }
-//        }
-//         测试打开
-        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
-        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
+        lifecycleScope.launch {
+            val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
+            authResult.onSuccess {
+                Repository.getAccessToken(it).data.let { data ->
+                    AppConfig.ACCESS_TOKEN = data.access_token
+                    AppConfig.OPEN_ID = data.open_id
+                    LogCat.d(AppConfig.ACCESS_TOKEN)
+                    LogCat.d(AppConfig.OPEN_ID)
+                }
+            }.onFailure {
+                toast("授权失败\n${it.message}")
+            }
+        }
+////         测试打开
+//        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
+//        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
 
     override fun initData() {

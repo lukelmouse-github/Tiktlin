@@ -46,7 +46,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 toast("授权失败\n${it.message}")
             }
         }
-        // 测试打开
+//         测试打开
 //        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
 //        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
@@ -80,7 +80,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 0 -> tab.text = getString(R.string.title_home)
                 1 -> tab.text = getString(R.string.title_friend)
                 3 -> tab.text = getString(R.string.title_message)
-                else -> tab.text = getString(R.string.title_me)
+                4 -> tab.text = getString(R.string.title_me)
             }
         }.attach()
 
@@ -103,11 +103,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
                     when (tab.position) {
-                        0 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
-                        1 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
-                        2 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
-                        3 -> binding.bottomNav.setBackgroundColor(Color.WHITE)
-                        else -> binding.bottomNav.setBackgroundColor(Color.WHITE)
+                        0,1,2 -> {
+                            binding.bottomNav.setBackgroundColor(Color.BLACK)
+                            binding.navAddVideo.setBackgroundResource(R.drawable.nav_add_video)
+                        }
+                        3,4 -> {
+                            binding.bottomNav.setBackgroundColor(Color.WHITE)
+                            binding.navAddVideo.setBackgroundResource(R.drawable.nav_add_video_black)
+                        }
                     }
                 }
 

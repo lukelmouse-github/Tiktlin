@@ -55,7 +55,6 @@
                     android:layout_height="wrap_content"/>
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/nav_add_video"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -73,11 +72,12 @@
             </com.google.android.material.tabs.TabLayout>
 
             <ImageView
+                android:id="@+id/nav_add_video"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginBottom="5dp"
-                android:src="@drawable/nav_add_video"
+                android:background="@drawable/nav_add_video"
                 android:layout_width="50dp"
                 android:layout_height="35dp" />
 

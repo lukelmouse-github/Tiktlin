@@ -1,12 +1,12 @@
 package com.qxy.tiktlin.common.network.config
 
+import com.drake.logcat.LogCat
 import okhttp3.Connection
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
 import okio.Buffer
-import timber.log.Timber
 import java.net.URLDecoder
 import java.text.SimpleDateFormat
 import java.util.*
@@ -87,11 +87,11 @@ class LogInterceptor(block: (LogInterceptor.() -> Unit)? = null) : Interceptor {
 
     private fun logIt(any: Any, tempLevel: ColorLevel? = null) {
         when (tempLevel ?: colorLevel) {
-            ColorLevel.VERBOSE -> Timber.tag(logTag).v(any.toString())
-            ColorLevel.DEBUG -> Timber.tag(logTag).d(any.toString())
-            ColorLevel.INFO -> Timber.tag(logTag).i(any.toString())
-            ColorLevel.WARN -> Timber.tag(logTag).w(any.toString())
-            ColorLevel.ERROR -> Timber.tag(logTag).e(any.toString())
+            ColorLevel.VERBOSE -> LogCat.v(any.toString(), tag = TAG)
+            ColorLevel.DEBUG -> LogCat.d(any.toString(), tag = TAG)
+            ColorLevel.INFO -> LogCat.i(any.toString(), tag = TAG)
+            ColorLevel.WARN -> LogCat.w(any.toString(), tag = TAG)
+            ColorLevel.ERROR -> LogCat.e(any.toString(), tag = TAG)
         }
     }
 

@@ -1,10 +1,19 @@
 package com.qxy.tiktlin.fragment
 
 import androidx.fragment.app.viewModels
-import com.qxy.tiktlin.common.base.BaseFragment
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
 import com.qxy.tiktlin.R
+import com.qxy.tiktlin.Repository
+import com.qxy.tiktlin.common.base.BaseFragment
+import com.qxy.tiktlin.common.network.config.AppConfig
 import com.qxy.tiktlin.databinding.FragmentMeBinding
 import com.qxy.tiktlin.vm.MeViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
     private val viewModel by viewModels<MeViewModel>()
@@ -13,6 +22,14 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
     }
 
     override fun initView() {
+        super.initView()
 
+    }
+
+    override fun initData() {
+        super.initData()
+        lifecycleScope.launch(Dispatchers.IO) {
+            binding.user = Repository.getUser(AppConfig.OPEN_ID)
+        }
     }
 }

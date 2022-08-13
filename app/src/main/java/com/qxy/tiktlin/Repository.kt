@@ -30,4 +30,9 @@ object Repository {
         db.userDao().insertUser(new_user)
         return new_user
     }
+
+    suspend fun getClientToken() = Api.getClientToken(AppConfig.CLIENT_KEY, AppConfig.CLIENT_SECRET, "client_credential")
+    suspend fun getRankList(type: Int) = Api.getRank(AppConfig.CLIENT_TOKEN ,type)
+
+
 }

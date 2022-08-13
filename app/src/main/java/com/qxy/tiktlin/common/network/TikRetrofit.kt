@@ -8,6 +8,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
+// Todo
+// 网络请求如何取消？
+// 在页面关闭对时候触发，最好捕获作用域内的错误
 object TikRetrofit {
     private val mOkClient = OkHttpClient.Builder()
         .callTimeout(10, TimeUnit.SECONDS)

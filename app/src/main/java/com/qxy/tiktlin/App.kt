@@ -1,12 +1,12 @@
 package com.qxy.tiktlin
 
 import android.app.Application
+import com.drake.logcat.LogCat
 import com.google.android.material.color.DynamicColors
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import timber.log.Timber
 
 lateinit var appInstance: App
 
@@ -16,13 +16,14 @@ class App : Application() {
         super.onCreate()
         appInstance = this
 
+        // Koin
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@App)
         }
-
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+            // 日志库
+            LogCat.setDebug(BuildConfig.DEBUG)
         }
 
         DynamicColors.applyToActivitiesIfAvailable(this)

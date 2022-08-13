@@ -1,8 +1,8 @@
 package com.qxy.tiktlin
 
-import android.annotation.SuppressLint
+import android.graphics.Color
 import android.graphics.Typeface
-import android.util.TypedValue
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -10,11 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.drake.logcat.LogCat
+import com.drake.tooltip.toast
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.common.base.BaseActivity
+import com.qxy.tiktlin.common.ktx.immediateStatusBar
+import com.qxy.tiktlin.common.network.Api
 import com.qxy.tiktlin.common.network.config.AppConfig
-import com.qxy.tiktlin.common.util.makeToast
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.fragment.AddVideoFragment
@@ -23,10 +26,7 @@ import com.qxy.tiktlin.fragment.HomeFragment
 import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
 import com.qxy.tiktlin.vm.MainViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -39,31 +39,24 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 Repository.getAccessToken(it).data.let { data ->
                     AppConfig.ACCESS_TOKEN = data.access_token
                     AppConfig.OPEN_ID = data.open_id
+                    LogCat.d(AppConfig.ACCESS_TOKEN)
+                    LogCat.d(AppConfig.OPEN_ID)
                 }
             }.onFailure {
-                makeToast("授权失败\n${it.message}")
+                toast("授权失败\n${it.message}")
             }
-            withContext(Dispatchers.IO) {
-                val user = Repository.getUser(AppConfig.OPEN_ID)
-                withContext(Dispatchers.Main) {
-                    Timber.d("授权成功\n${AppConfig.ACCESS_TOKEN}")
-                    Timber.d("userInfo: $user")
-                }
-            }
-
         }
+        // 测试打开
+//        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
+//        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
 
     override fun initData() {
         super.initData()
-//        GlobalScope.launch {
-//            val x = Repository.getUser("123")
-//        }
-
-
     }
 
     override fun initView() {
+        immediateStatusBar()
         binding.viewModel = viewModel
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -82,7 +75,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 }
             }
         }
-
         TabLayoutMediator(binding.bottomNav, binding.viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.title_home)
@@ -92,31 +84,53 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }.attach()
 
+        // TabLayout 自定义view
+        for (i in 0 until binding.bottomNav.getTabCount()) {
+            val tab: TabLayout.Tab? = binding.bottomNav.getTabAt(i)
+            if (tab != null) {
+                val tabTextView = TextView(this)
+                tab.customView = tabTextView
+                tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
+                tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                tabTextView.text = tab.text
+                if (i == 0) {
+                    tabTextView.textSize = 15f
+                }
+            }
+        }
 
-        // 底部导航栏自定义样式，听说radio比tablelayout简单
         binding.bottomNav.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            @SuppressLint("ResourceType")
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab != null) {
+                    when (tab.position) {
+                        0 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
+                        1 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
+                        2 -> binding.bottomNav.setBackgroundColor(Color.BLACK)
+                        3 -> binding.bottomNav.setBackgroundColor(Color.WHITE)
+                        else -> binding.bottomNav.setBackgroundColor(Color.WHITE)
+                    }
+                }
+
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
-                val vgTab = tab?.let { vg.getChildAt(it.position) } as ViewGroup
-                for (i in 0..vgTab.childCount) {
-                    val tabViewChild = vgTab.getChildAt(i)
+                val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
+                val tabChildsCount = vgTab.childCount
+                for (i in 0 until tabChildsCount) {
+                    val tabViewChild: View = vgTab.getChildAt(i)
                     if (tabViewChild is TextView) {
-                        tabViewChild.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17F)
                         tabViewChild.setTypeface(null, Typeface.BOLD)
+                        (tabViewChild as TextView).textSize = 16f
                     }
                 }
             }
 
-            @SuppressLint("ResourceType")
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
-                val vgTab = tab?.let { vg.getChildAt(it.position) } as ViewGroup
-                for (i in 0..vgTab.childCount) {
+                val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
+                val tabChildsCount = vgTab.childCount
+                for (i in 0 until tabChildsCount) {
                     val tabViewChild = vgTab.getChildAt(i)
                     if (tabViewChild is TextView) {
-                        tabViewChild.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15F)
-                        tabViewChild.setTypeface(null, Typeface.BOLD)
+                        tabViewChild.textSize = 15f
                     }
                 }
             }

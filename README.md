@@ -32,13 +32,20 @@ Json解析：Moshi
 
 数据库：Room
 
+吐司：https://liangjingkanji.github.io/Tooltip/
 
+日志：https://github.com/liangjingkanji/LogCat
 
+图片加载：Glide
 
 
 ### 3.2 架构设计
 
 > 整个项目采用的架构设计，可以包含流程图示例、代码示例等
+
+![mvvm](/Users/bytedance/Projects/Lukelmouse/Tiktlin/img/mvvm.png)
+
+
 
 ### 3.3 项目代码介绍
 

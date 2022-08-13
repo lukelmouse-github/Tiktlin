@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
+import com.drake.logcat.LogCat
 import com.qxy.tiktlin.common.ktx.bindView
 import com.qxy.tiktlin.common.ktx.viewLifeCycleOwner
-import timber.log.Timber
 
 abstract class BaseActivity<Binding : ViewDataBinding>(
     @LayoutRes protected val layout: Int
@@ -19,7 +19,7 @@ abstract class BaseActivity<Binding : ViewDataBinding>(
         binding = bindView<Binding>(layout).also {
             it.lifecycleOwner = viewLifeCycleOwner
         }
-        Timber.d(javaClass.simpleName)
+        LogCat.d(javaClass.simpleName)
         initConfig()
         initView()
         initData()

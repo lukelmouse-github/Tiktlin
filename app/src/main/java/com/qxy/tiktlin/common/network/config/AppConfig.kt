@@ -13,6 +13,7 @@ object AppConfig {
 
     var OPEN_ID: String = "-1"
 
+    var CLIENT_TOKEN: String = "-1"
     const val AUTHORIZATION_CODE = "authorization_code"
 
 

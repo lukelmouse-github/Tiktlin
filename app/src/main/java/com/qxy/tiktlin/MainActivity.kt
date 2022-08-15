@@ -3,7 +3,6 @@ package com.qxy.tiktlin
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Typeface
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -89,7 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     // TabLayout 自定义view
     private fun setTabLayout() {
 
-        for (i in 0 until binding.bottomNav.getTabCount()) {
+        for (i in 0 until binding.bottomNav.tabCount) {
             val tab: TabLayout.Tab? = binding.bottomNav.getTabAt(i)
             if (tab != null) {
                 val tabTextView = TextView(this)
@@ -97,15 +96,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                 tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
                 tabTextView.text = tab.text
-                if (i == 0) {
-                    tabTextView.textSize = 15f
-                }
+                tabTextView.textSize = 15f
+                tabTextView.setTextColor(Color.GRAY)
+                tabTextView.setTypeface(null, Typeface.NORMAL)
             }
         }
 
         binding.bottomNav.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             @SuppressLint("ResourceAsColor")
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                //  设置背景
                 if (tab != null) {
                     when (tab.position) {
                         0,1,2 -> {
@@ -118,22 +118,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                         }
                     }
                 }
+                // 设置Text 颜色 Style
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
                 val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
-                val tabChildsCount = vgTab.childCount
-                for (i in 0 until tabChildsCount) {
-                    val tabViewChild: View = vgTab.getChildAt(i)
-                    if (tabViewChild is TextView) {
-                        if (tab.position < 3) {
-                            tabViewChild.setTextColor(Color.WHITE)
-                            tabViewChild.setTypeface(null, Typeface.BOLD)
-                            (tabViewChild as TextView).textSize = 16f
-                        } else {
-                            tabViewChild.setTextColor(Color.BLACK)
-                            tabViewChild.setTypeface(null, Typeface.BOLD)
-                            (tabViewChild as TextView).textSize = 16f
-                        }
-                    }
+                val tabTextView = vgTab.getChildAt(2) as TextView
+                if (tab.position < 3) {
+                    tabTextView.setTextColor(Color.WHITE)
+                    tabTextView.setTypeface(null, Typeface.BOLD)
+                    tabTextView.textSize = 16f
+                } else {
+                    tabTextView.setTextColor(Color.BLACK)
+                    tabTextView.setTypeface(null, Typeface.BOLD)
+                    tabTextView.textSize = 16f
                 }
             }
 
@@ -141,15 +137,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
                 val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
-                val tabChildsCount = vgTab.childCount
-                for (i in 0 until tabChildsCount) {
-                    val tabViewChild = vgTab.getChildAt(i)
-                    if (tabViewChild is TextView) {
-                        tabViewChild.setTextColor(Color.GRAY)
-                        tabViewChild.setTypeface(null, Typeface.NORMAL)
-                        (tabViewChild as TextView).textSize = 15f
-                    }
-                }
+                val tabTextView = vgTab.getChildAt(2) as TextView
+                tabTextView.setTextColor(Color.GRAY)
+                tabTextView.setTypeface(null, Typeface.NORMAL)
+                tabTextView.textSize = 15f
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {

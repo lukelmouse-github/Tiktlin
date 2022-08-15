@@ -16,6 +16,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -25,10 +26,9 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
-            android:id="@+id/user_backgourd"
             android:background="@drawable/testbackground"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="500dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -59,6 +59,343 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/radius_15_bg_white"
+                app:layout_constraintTop_toBottomOf="@id/hor_whole_bar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hor_left"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="0dp">
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/liner_star_follow"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/liner_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/stars"
+                            tools:text="2500"
+                            android:text="2500"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_normal"
+                            android:text="获赞"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/liner_follow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/follow"
+                            tools:text="2786"
+                            android:text="2786"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_normal"
+                            android:text="关注"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginStart="15dp"
+                        android:id="@+id/liner_followers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/followers"
+                            tools:text="8"
+                            android:text="8"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_marginStart="5dp"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_normal"
+                            android:text="粉丝"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/user_description"
+                    android:layout_marginTop="10dp"
+                    android:text="电影工作者"
+                    tools:text="电影工作者"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+                <LinearLayout
+                    android:id="@+id/user_gender_university"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:id="@+id/user_gender_age"
+                        android:orientation="horizontal"
+                        android:background="@color/bg_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/user_gender_icon"
+                            android:src="@drawable/gender_man"
+                            android:layout_width="20dp"
+                            android:layout_gravity="center"
+                            android:layout_height="20dp"/>
+                        <TextView
+                            android:id="@+id/user_age"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:text="18岁"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:orientation="horizontal"
+                        android:background="@color/bg_gray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@drawable/university"
+                            android:layout_width="18dp"
+                            android:layout_gravity="center"
+                            android:layout_height="18dp"/>
+                        <TextView
+                            android:id="@+id/user_university"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:text="浙江大学"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:background="@color/bg_gray"
+                        android:layout_marginStart="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/user_city"
+                            android:textSize="13sp"
+                            android:layout_gravity="center"
+                            android:text="北京"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:background="@color/bg_gray"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:src="@drawable/shopping_cart"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:text="抖音商城"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="美好生活触手可得"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:background="@color/bg_gray"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp">
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:src="@drawable/microapp"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"/>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textColor="@color/black"
+                                android:text="我的小程序"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:text="最近使用"
+                                android:textSize="12sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp">
+
+                    <TextView
+                        android:id="@+id/userInfoEdit"
+                        android:gravity="center"
+                        android:background="@color/bg_gray"
+                        android:text="编辑资料"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="10dp"
+                        android:layout_height="match_parent"/>
+
+                    <TextView
+                        android:id="@+id/addFriend"
+                        android:text="添加朋友"
+                        android:background="@color/bg_gray"
+                        android:gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hor_tablayout"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                app:tabIndicatorColor="@color/black"
+                app:tabIndicatorHeight="2dp"
+                app:tabIndicatorFullWidth="true"
+                android:layout_height="35dp">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/works"
+                    android:text="@string/works"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/collectionWorks"
+                    android:text="收藏"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/privateWorks"
+                    android:text="私密"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/likeWorks"
+                    android:text="喜欢"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hor_tablayout"
+                android:layout_marginTop="35dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_tablayout"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.55"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/hor_left"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.22"
+                android:layout_width="0dp"
+                android:layout_height="0dp"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/ver_user_info_part"

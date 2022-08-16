@@ -17,17 +17,5 @@ public abstract class TikDatabase : RoomDatabase() {
                 TikDatabase::class.java,
                 "TikDatabase").build()
         }
-//        fun getDatabase(): TikDatabase {
-//            return INSTANCE ?: synchronized(this) {
-//                val instance = Room.databaseBuilder(
-//                    appInstance,
-//                    TikDatabase::class.java,
-//                    "TikDatabase"
-//                ).build()
-//                INSTANCE = instance
-//                instance
-//            }
-//        }
-
     }
 }

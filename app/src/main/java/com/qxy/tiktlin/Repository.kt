@@ -11,28 +11,17 @@ object Repository {
     private val retrofit = TikRetrofit.initConfig(AppConfig.BASE_URL)
     val Api = retrofit.create<Api>()
     suspend fun getAccessToken(authCode: String) = Api.getAccessToken(AppConfig.CLIENT_SECRET, authCode, AppConfig.AUTHORIZATION_CODE, AppConfig.CLIENT_KEY)
-    suspend fun getUserInfo(open_id: String, accessToken: String) = Api.getUserInfo(accessToken, open_id)
-    suspend fun getUser(open_id: String): User {
-        val user = db.userDao().getUser(open_id)
-        if (user != null) {
-            return user
-        }
-        val userInfo = getUserInfo(open_id, AppConfig.ACCESS_TOKEN)
-        val new_user = User(
-            name = userInfo.data.nickname,
-            avatar = userInfo.data.avatar,
-            openId = userInfo.data.open_id,
-            gender = userInfo.data.gender,
-            country = userInfo.data.country,
-            province = userInfo.data.province,
-            city = userInfo.data.city
-        )
-        db.userDao().insertUser(new_user)
-        return new_user
+    suspend fun getUserInfo(open_id: String = AppConfig.OPEN_ID, accessToken: String = AppConfig.ACCESS_TOKEN) = Api.getUserInfo(accessToken, open_id)
+    suspend fun getUser(open_id: String = AppConfig.OPEN_ID): User {
+        return TikDatabase.appDatabase.userDao().getUser(open_id)
     }
 
     suspend fun getClientToken() = Api.getClientToken(AppConfig.CLIENT_KEY, AppConfig.CLIENT_SECRET, "client_credential")
     suspend fun getRankList(type: Int) = Api.getRank(AppConfig.CLIENT_TOKEN ,type)
 
+    suspend fun getTotalFans() = Api.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, 0, 1).data.total
+    suspend fun getFans(cursor: Long, count: Int) = Api.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)
+
+    suspend fun getFollows(cursor: Long, count: Int) = Api.getUserFollow(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data.total
 
 }

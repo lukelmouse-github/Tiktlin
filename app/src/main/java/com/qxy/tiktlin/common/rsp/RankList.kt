@@ -12,7 +12,7 @@ data class RankList(
         val active_time: String = "-1",
         val description: String = "-1",
         val error_code: Long = -1,
-        val list: List<RankItem>
+        val list: List<RankItem> = listOf()
     ): Serializable {
         data class RankItem(
             val actors: List<String> = listOf(),
@@ -29,9 +29,4 @@ data class RankList(
             val tags: List<String> = listOf()
         )
     }
-    data class Extra(
-        val error_code: Long,
-        val logid: String,
-        val description: String,
-    )
 }

@@ -25,18 +25,18 @@ data class UserInfo(
     val data: Data
 ): Serializable {
     data class Data (
-        val avatar: String,
+        val avatar: String = "",
         val country: String = "中国",
         // 性别: * `0` - 未知 * `1` - 男性 * `2` - 女性
         val gender: Long = 0,
         val nickname: String = "未命名",
-        val open_id: String,
+        val open_id: String = "",
         val province: String = "北京",
         val city: String = "北京",
         // 错误码描述
-        val description: String? = null,
-        val e_account_role: String? = null,
-        val error_code: Long? = null,
-        val union_id: String? = null
+        val description: String = "",
+        val e_account_role: String = "",
+        val error_code: Long = -1,
+        val union_id: String = ""
     ): Serializable
 }

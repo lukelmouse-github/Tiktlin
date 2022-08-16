@@ -36,9 +36,9 @@ object AuthorizationAdapter {
         val request: Authorization.Request = Authorization.Request()
 
         // 用户授权权限Scope，用逗号隔开
-        request.scope = "user_info, trial.whitelist, following.list, fans.list, fans.check, " +
-            "item.comment, data.external.item, discovery.ent, aweme.share, " +
-            "im.share"
+        request.scope = "user_info, trial.whitelist, following.list, fans.list, fans.check," +
+            "aweme.share, aweme.capture, video.data, video.list," +
+            "data.external.item, discovery.ent, hotsearch"
         return suspendCoroutine { cont ->
             mCallback = AuthCallback { result -> cont.resume(result) }
             douyinOpenApi.authorize(request)

@@ -18,6 +18,8 @@ import com.qxy.tiktlin.common.base.BaseActivity
 import com.qxy.tiktlin.common.ktx.immediateStatusBar
 import com.qxy.tiktlin.common.network.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
+import com.qxy.tiktlin.db.TikDatabase
+import com.qxy.tiktlin.db.entity.User
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.fragment.AddVideoFragment
 import com.qxy.tiktlin.fragment.FriendFragment
@@ -25,7 +27,9 @@ import com.qxy.tiktlin.fragment.HomeFragment
 import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
 import com.qxy.tiktlin.vm.MainViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
@@ -40,18 +44,35 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     AppConfig.OPEN_ID = data.open_id
                     LogCat.d(AppConfig.ACCESS_TOKEN)
                     LogCat.d(AppConfig.OPEN_ID)
+                    val user = Repository.getUserInfo()
+                    val totalFans = Repository.getTotalFans()
+                    val newUser = User(
+                        name = user.data.nickname,
+                        city = user.data.city,
+                        openId = user.data.open_id,
+                        avatar = user.data.avatar,
+                        gender = user.data.gender,
+                        country = user.data.country,
+                        province = user.data.province,
+                        totalFans = totalFans,
+                    )
+                    withContext(Dispatchers.IO) {
+                        TikDatabase.appDatabase.userDao().insertUser(newUser)
+                    }
                 }
             }.onFailure {
                 toast("授权失败\n${it.message}")
             }
         }
-////         测试打开
+//         测试打开
 //        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
 //        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
 
     override fun initData() {
         super.initData()
+        binding.viewPager.currentItem = 0
+        binding.bottomNav.getTabAt(0)?.select()
     }
 
     override fun initView() {
@@ -96,9 +117,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 tabTextView.layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT
                 tabTextView.layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
                 tabTextView.text = tab.text
-                tabTextView.textSize = 15f
-                tabTextView.setTextColor(Color.GRAY)
-                tabTextView.setTypeface(null, Typeface.NORMAL)
             }
         }
 

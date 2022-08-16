@@ -7,7 +7,7 @@
     <data>
         <variable
             name="user"
-            type="com.qxy.tiktlin.db.entity.User" />
+            type="com.qxy.tiktlin.model.datasource.database.User" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

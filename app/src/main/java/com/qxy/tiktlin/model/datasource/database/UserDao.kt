@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.qxy.tiktlin.db.entity.User
+import com.qxy.tiktlin.model.datasource.database.User
 
 // https://developer.android.com/codelabs/android-room-with-a-view-kotlin?hl=zh-cn#4
 @Dao

@@ -18,8 +18,8 @@ import com.qxy.tiktlin.widget.BaseActivity
 import com.qxy.tiktlin.common.ktx.immediateStatusBar
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
-import com.qxy.tiktlin.db.TikDatabase
-import com.qxy.tiktlin.db.entity.User
+import com.qxy.tiktlin.model.datasource.database.TikDatabase
+import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.fragment.AddVideoFragment
 import com.qxy.tiktlin.fragment.FriendFragment
@@ -28,7 +28,7 @@ import com.qxy.tiktlin.fragment.MeFragment
 import com.qxy.tiktlin.fragment.MessageFragment
 
 import com.qxy.tiktlin.ui.vm.MainViewModel
-import com.qxy.tiktlin.widget.Repository
+import com.qxy.tiktlin.model.datasource.network.NetDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -41,13 +41,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         lifecycleScope.launch {
             val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
             authResult.onSuccess {
-                Repository.getAccessToken(it).data.let { data ->
+                NetDataSource.getAccessToken(it).data.let { data ->
                     AppConfig.ACCESS_TOKEN = data.access_token
                     AppConfig.OPEN_ID = data.open_id
                     LogCat.d(AppConfig.ACCESS_TOKEN)
                     LogCat.d(AppConfig.OPEN_ID)
-                    val user = Repository.getUserInfo()
-                    val totalFans = Repository.getTotalFans()
+                    val user = NetDataSource.getUserInfo()
+                    val totalFans = NetDataSource.getTotalFans()
                     val newUser = User(
                         name = user.data.nickname,
                         city = user.data.city,

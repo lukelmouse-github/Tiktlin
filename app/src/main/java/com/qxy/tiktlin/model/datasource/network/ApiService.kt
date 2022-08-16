@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.model
+package com.qxy.tiktlin.model.datasource.network
 
 import com.qxy.tiktlin.common.rsp.AccessToken
 import com.qxy.tiktlin.common.rsp.ClientToken
@@ -14,7 +14,13 @@ import retrofit2.http.Query
 
 // Todo 接口信息
 // https://open.douyin.com/platform/resource/docs/openapi/account-permission/get-access-token
-interface Api {
+
+
+
+
+
+
+interface ApiService {
 
     @FormUrlEncoded
     @POST("oauth/access_token")

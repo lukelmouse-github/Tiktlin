@@ -13,11 +13,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.R
 
-import com.qxy.tiktlin.widget.Repository
+import com.qxy.tiktlin.model.datasource.network.NetDataSource
 import com.qxy.tiktlin.widget.BaseFragment
-import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.FragmentMeBinding
-import com.qxy.tiktlin.ui.vm.MeViewModel
+import com.qxy.tiktlin.model.datasource.database.LocalDataSource
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -55,7 +54,7 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
     override fun initData() {
         super.initData()
         lifecycleScope.launch(Dispatchers.IO) {
-            val user = Repository.getUser()
+            val user = LocalDataSource.getUser()
             withContext(Dispatchers.Main) {
                 binding.user = user
             }

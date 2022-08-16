@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.db.entity
+package com.qxy.tiktlin.model.datasource.database
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

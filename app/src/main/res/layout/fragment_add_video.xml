@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.qxy.tiktlin.vm.AddVideoViewModel" />
+            type="com.qxy.tiktlin.ui.vm.AddVideoViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

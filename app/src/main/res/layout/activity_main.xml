@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.qxy.tiktlin.vm.MainViewModel" />
+            type="com.qxy.tiktlin.ui.vm.MainViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

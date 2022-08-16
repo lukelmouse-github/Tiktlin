@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.qxy.tiktlin.vm.FriendViewModel" />
+            type="com.qxy.tiktlin.ui.vm.FriendViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

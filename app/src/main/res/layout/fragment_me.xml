@@ -12,28 +12,38 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fitsSystemWindows="true">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
-        </com.google.android.material.appbar.AppBarLayout>
-
         <ImageView
             android:background="@drawable/testbackground"
             android:layout_width="match_parent"
             android:layout_height="500dp"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true">
+            <FrameLayout
+                android:id="@+id/toolbar"
+                android:paddingHorizontal="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/search"
+                    android:background="@drawable/bg_gray"
+                    android:layout_gravity="end"
+                    android:padding="5dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/search" />
+
+            </FrameLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="45dp"
+            android:layout_marginBottom="75dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ImageView
@@ -131,7 +141,7 @@
                         <TextView
                             android:id="@+id/followers"
                             tools:text="8"
-                            android:text="8"
+                            android:text="@{String.valueOf(10)}"
                             android:textStyle="bold"
                             android:textSize="18sp"
                             android:layout_width="wrap_content"

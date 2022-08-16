@@ -2,6 +2,7 @@ package com.qxy.tiktlin.model
 
 import com.qxy.tiktlin.common.rsp.AccessToken
 import com.qxy.tiktlin.common.rsp.ClientToken
+import com.qxy.tiktlin.common.rsp.Fans
 import com.qxy.tiktlin.common.rsp.RankList
 import com.qxy.tiktlin.common.rsp.UserInfo
 import retrofit2.http.Field
@@ -44,4 +45,20 @@ interface Api {
         @Header("access-token") access_token: String,
         @Query("type") type: Int
     ): RankList
+
+    @GET("/fans/list/")
+    suspend fun getUserFans(
+        @Header("access-token") access_token: String,
+        @Query("open_id") open_id: String,
+        @Query("cursor") cursor: Long,
+        @Query("count") count: Int
+    ): Fans
+
+    @GET("/following/list/")
+    suspend fun getUserFollow(
+        @Header("access-token") access_token: String,
+        @Query("open_id") open_id: String,
+        @Query("cursor") cursor: Long,
+        @Query("count") count: Int
+    ): Fans
 }

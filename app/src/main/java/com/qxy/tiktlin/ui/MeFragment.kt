@@ -6,26 +6,26 @@ import android.graphics.Typeface
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.drake.logcat.LogCat
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.R
+
 import com.qxy.tiktlin.widget.Repository
 import com.qxy.tiktlin.widget.BaseFragment
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.FragmentMeBinding
 import com.qxy.tiktlin.ui.vm.MeViewModel
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
-    private val viewModel by viewModels<MeViewModel>()
     override fun initConfig() {
-
     }
 
     override fun initView() {
@@ -34,10 +34,10 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
             override fun getItemCount() = 4
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> FriendFragment()
-                    1 -> FriendFragment()
-                    2 -> FriendFragment()
-                    else -> HomeFragment()
+                    0 -> VideoSimpleFragment("作品")
+                    1 -> VideoSimpleFragment("收藏")
+                    2 -> VideoSimpleFragment("私密")
+                    else -> VideoSimpleFragment("喜欢")
                 }
             }
         }
@@ -50,18 +50,21 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
             }
         }.attach()
         setTabLayout()
-
-
     }
 
     override fun initData() {
         super.initData()
         lifecycleScope.launch(Dispatchers.IO) {
-            binding.user = Repository.getUser(AppConfig.OPEN_ID)
+            val user = Repository.getUser()
+            withContext(Dispatchers.Main) {
+                binding.user = user
+            }
+        }
+        binding.search.setOnClickListener {
+
         }
     }
 
-    // Todo TabLayout 滑动无动画
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setTabLayout() {
         binding.tabLayout.animation

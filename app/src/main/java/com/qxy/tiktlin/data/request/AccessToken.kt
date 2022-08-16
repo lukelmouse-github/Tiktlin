@@ -21,18 +21,18 @@ import java.io.Serializable
 // https://open.douyin.com/platform/doc?doc=docs/openapi/account-permission/get-access-token
 
 data class AccessToken (
-    val data: Data = Data(),
-    val message: String? = null
+    val data: Data,
+    val message: String = ""
 ): Serializable {
     data class Data (
-        val error_code: Long? = null,
-        val expires_in: Long? = null,
+        val error_code: Long = -1,
+        val expires_in: Long = -1,
         val open_id: String = "",
-        val refresh_expires_in: Long? = null,
-        val refresh_token: String? = null,
-        val scope: String? = null,
+        val refresh_expires_in: Long = -1,
+        val refresh_token: String = "",
+        val scope: String = "",
         val access_token: String = "",
-        val description: String? = null
+        val description: String = ""
     ): Serializable
 }
 

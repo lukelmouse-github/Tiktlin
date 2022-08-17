@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="kotlinx.coroutines.flow.StateFlow" />
+
+        <variable
+            name="viewModel"
+            type="com.qxy.tiktlin.ui.vm.FansViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- 下拉刷新组件-->
+            <com.qxy.tiktlin.widget.CustomSwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:onRefreshListener="@{() -> viewModel.onSwipeRefresh()}"
+                app:refreshing="@{viewModel.swipeRefreshing}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/list_paddingBotton"
+                android:paddingTop="@dimen/lsit_paddingTop"
+                android:scrollbars="vertical"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/item_fan" />
+
+            <!--加载失败则显示-->
+            <TextView
+                android:id="@+id/empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_find_data"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:goneUnless="@{!viewModel.isEmpty &amp;&amp; !viewModel.isLoading}"
+                tools:targetApi="o"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/red_pink"
+                    app:goneUnless="@{viewModel.isLoading}" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

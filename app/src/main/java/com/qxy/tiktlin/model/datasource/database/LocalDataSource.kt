@@ -8,7 +8,7 @@ import com.qxy.tiktlin.model.datasource.database.User
 调用示例
 viewModelScope.launch {
 try {
-val FansResult = NetReasouse.getFans()
+val FansResult = LocalDataSource.getFans()
 _status.value = FansResult
 } catch (e: Exception) {
 _status.value = "Failure: ${e.message}"

@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.widget.BaseFragment
 import com.qxy.tiktlin.databinding.FragmentMeBinding
-import com.qxy.tiktlin.model.datasource.database.LocalDataSource
+import com.qxy.tiktlin.model.repository.Repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,10 +31,10 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
             override fun getItemCount() = 4
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
-                    0 -> VideoSimpleFragment("作品")
-                    1 -> VideoSimpleFragment("收藏")
-                    2 -> VideoSimpleFragment("私密")
-                    else -> VideoSimpleFragment("喜欢")
+                    0 -> VideoSimpleFragment.newInstance("作品")
+                    1 -> VideoSimpleFragment.newInstance("收藏")
+                    2 -> VideoSimpleFragment.newInstance("私密")
+                    else -> VideoSimpleFragment.newInstance("喜欢")
                 }
             }
         }
@@ -52,7 +52,7 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
     override fun initData() {
         super.initData()
         lifecycleScope.launch(Dispatchers.IO) {
-            val user = LocalDataSource.getUser()
+            val user = Repository.getUser()
             withContext(Dispatchers.Main) {
                 binding.user = user
             }
@@ -85,9 +85,6 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val vg = binding.tabLayout.getChildAt(0) as ViewGroup
                 val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
-                for (i in 0 until vgTab.childCount) {
-                    LogCat.e("$i : ${vgTab.getChildAt(i).javaClass.name}")
-                }
                 val tabTextView = vgTab.getChildAt(2) as TextView
                 tabTextView.setTextColor(Color.BLACK)
                 tabTextView.setTypeface(null, Typeface.BOLD)

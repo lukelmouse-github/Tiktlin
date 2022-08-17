@@ -14,15 +14,14 @@ import com.drake.logcat.LogCat
 import com.drake.tooltip.toast
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.widget.BaseActivity
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
-import com.qxy.tiktlin.model.datasource.database.TikDatabase
 import com.qxy.tiktlin.model.datasource.database.User
-
+import com.qxy.tiktlin.model.repository.Repository
 import com.qxy.tiktlin.ui.vm.MainViewModel
-import com.qxy.tiktlin.model.datasource.network.NetDataSource
 import com.qxy.tiktlin.widget.immediateStatusBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,13 +35,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         lifecycleScope.launch {
             val authResult = AuthorizationAdapter.fetchAuthCode(this@MainActivity)
             authResult.onSuccess {
-                NetDataSource.getAccessToken(it).data.let { data ->
+                Repository.getAccessToken(it).data.let { data ->
                     AppConfig.ACCESS_TOKEN = data.access_token
                     AppConfig.OPEN_ID = data.open_id
                     LogCat.d(AppConfig.ACCESS_TOKEN)
                     LogCat.d(AppConfig.OPEN_ID)
-                    val user = NetDataSource.getUserInfo()
-                    val totalFans = NetDataSource.getTotalFans()
+                    val user = Repository.getUserInfo()
+                    val totalFans = Repository.getTotalFans()
                     val newUser = User(
                         name = user.data.nickname,
                         city = user.data.city,
@@ -54,7 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                         totalFans = totalFans,
                     )
                     withContext(Dispatchers.IO) {
-                        TikDatabase.appDatabase.userDao().insertUser(newUser)
+                        Repository.insertUser(newUser)
                     }
                 }
             }.onFailure {

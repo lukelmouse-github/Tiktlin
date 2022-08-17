@@ -5,7 +5,6 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.qxy.tiktlin.widget.appInstance
 
-
 @Database(entities = [User::class], version = 1, exportSchema = false)
 public abstract class TikDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

@@ -7,6 +7,10 @@
     <data>
         <import type="kotlinx.coroutines.flow.StateFlow" />
 
+        <variable
+            name="fan"
+            type="com.qxy.tiktlin.data.netData.Fans.Data.User" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,10 +61,10 @@
 
 
         <TextView
-            android:id="@+id/tv_MovieName"
+            android:id="@+id/tv_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="default"
+            android:text="@{fan.nickname}"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
@@ -76,12 +80,12 @@
             android:id="@+id/tv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="default"
+            android:text="@{fan.city}"
             android:textAlignment="viewStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
             app:layout_constraintStart_toEndOf="@id/iv_movie"
-            app:layout_constraintTop_toTopOf="@id/tv_MovieName"
+            app:layout_constraintTop_toTopOf="@id/tv_nickname"
             app:layout_constraintVertical_bias="0.20"
             app:layout_constraintHorizontal_bias="0.020"
             tools:text="2022-04-09 播出" />

@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.ui
+package com.qxy.tiktlin.ui.theme
 
 import android.app.Activity
 import android.content.Intent

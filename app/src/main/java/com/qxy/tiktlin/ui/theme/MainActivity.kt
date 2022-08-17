@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.ui
+package com.qxy.tiktlin.ui.theme
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -21,6 +21,7 @@ import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.model.repository.Repository
+import com.qxy.tiktlin.ui.*
 import com.qxy.tiktlin.ui.vm.MainViewModel
 import com.qxy.tiktlin.widget.immediateStatusBar
 import kotlinx.coroutines.Dispatchers

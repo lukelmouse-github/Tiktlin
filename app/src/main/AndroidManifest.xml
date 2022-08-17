@@ -26,7 +26,7 @@
         </activity>
 
         <activity
-            android:name=".ui.theme.DouYinEntryActivity"
+            android:name=".douyinapi.DouYinEntryActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity="com.qxy.tiktlin" />

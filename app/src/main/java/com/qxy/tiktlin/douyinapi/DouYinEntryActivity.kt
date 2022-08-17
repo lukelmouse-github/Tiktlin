@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.ui.theme
+package com.qxy.tiktlin.douyinapi
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,6 @@ import com.bytedance.sdk.open.aweme.common.model.BaseReq
 import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
-import com.qxy.tiktlin.ui.AuthorizationAdapter
 
 class DouYinEntryActivity : Activity(), IApiEventHandler {
     private lateinit var douYinOpenApi: DouYinOpenApi

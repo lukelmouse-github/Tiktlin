@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.ui
+package com.qxy.tiktlin.douyinapi
 
 import android.app.Activity
 import com.bytedance.sdk.open.aweme.authorize.model.Authorization

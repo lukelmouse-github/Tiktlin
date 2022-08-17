@@ -19,6 +19,7 @@ import com.qxy.tiktlin.R
 import com.qxy.tiktlin.widget.BaseActivity
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
+import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.model.repository.Repository
 import com.qxy.tiktlin.ui.*

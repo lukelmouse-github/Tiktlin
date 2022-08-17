@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.widget
+package com.qxy.tiktlin
 
 import android.app.Application
 import com.drake.logcat.LogCat

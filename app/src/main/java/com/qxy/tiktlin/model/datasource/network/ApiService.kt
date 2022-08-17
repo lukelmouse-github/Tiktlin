@@ -1,25 +1,11 @@
 package com.qxy.tiktlin.model.datasource.network
 
-import com.qxy.tiktlin.data.netData.AccessToken
-import com.qxy.tiktlin.data.netData.ClientToken
-import com.qxy.tiktlin.data.netData.Fans
-import com.qxy.tiktlin.data.netData.UserInfo
-import com.qxy.tiktlin.data.netData.RankList
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
-import retrofit2.http.Query
+import com.qxy.tiktlin.data.netData.VideoData
+import com.qxy.tiktlin.data.netData.VideoList
+import com.qxy.tiktlin.data.netData.*
+import retrofit2.http.*
 
-// Todo 接口信息
 // https://open.douyin.com/platform/resource/docs/openapi/account-permission/get-access-token
-
-
-
-
-
-
 interface ApiService {
 
     @FormUrlEncoded
@@ -67,4 +53,19 @@ interface ApiService {
         @Query("cursor") cursor: Long,
         @Query("count") count: Int
     ): Fans
+
+    @GET("/video/list/")
+    suspend fun getVideoList(
+        @Header("access-token") access_token: String,
+        @Query("open_id") open_id: String,
+        @Query("cursor") cursor: Long?,
+        @Query("count") count: Int
+    ): VideoList
+
+    @POST("/video/data/")
+    suspend fun getVideoData(
+        @Header("access-token") access_token: String,
+        @Query("open_id") open_id: String,
+        @Body item_ids: VideoData.QueryBody
+    ): VideoData
 }

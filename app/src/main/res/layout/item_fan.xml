@@ -40,7 +40,7 @@
             android:id="@+id/bookmark_session"
             android:layout_width="8dp"
             android:layout_height="8dp"
-            app:srcCompat="@drawable/ic_home_checkable"
+            app:srcCompat="@drawable/baseline_home_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <!--以后可以添加点击方法的绑定-->
@@ -133,7 +133,7 @@
             app:layout_constraintBottom_toBottomOf="@id/iv_movie"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0.1"
-            android:src="@drawable/ic_home_checkable"
+            android:src="@drawable/baseline_home_24"
             app:layout_constraintStart_toEndOf="@id/iv_movie"
             app:layout_constraintTop_toBottomOf="@+id/tv_time"
             app:layout_constraintVertical_bias="0.9" />

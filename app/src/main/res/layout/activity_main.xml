@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    tools:context=".ui.theme.MainActivity">
 
     <data>
 
@@ -31,7 +31,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navGraph="@navigation/nav_graph" />
 
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/bottom_nav"
                 android:background="@color/black"
@@ -41,13 +40,13 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/nav_home"
+                    android:id="@+id/tab_home"
                     android:text="@string/title_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/nav_friend"
+                    android:id="@+id/tab_friend"
                     android:text="@string/title_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -57,33 +56,28 @@
                     android:layout_height="wrap_content"/>
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/nav_message"
+                    android:id="@+id/tab_message"
                     android:text="@string/title_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/nav_me"
+                    android:id="@+id/tab_me"
                     android:text="@string/title_me"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.tabs.TabLayout>
 
             <ImageView
-                android:id="@+id/nav_add_video"
+                android:id="@+id/tab_add_video"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/nav_add_video"
+                android:background="@drawable/add_video"
                 android:layout_width="50dp"
-                android:layout_height="35dp" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-
+                android:layout_height="35dp"
+                tools:ignore="ContentDescription" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

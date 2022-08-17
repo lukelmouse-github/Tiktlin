@@ -6,24 +6,21 @@ import android.graphics.Typeface
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.drake.logcat.LogCat
 import com.drake.tooltip.toast
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-
 import com.qxy.tiktlin.R
-import com.qxy.tiktlin.widget.BaseActivity
+import com.qxy.tiktlin.util.navigateMain
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.model.repository.Repository
-import com.qxy.tiktlin.ui.*
 import com.qxy.tiktlin.ui.vm.MainViewModel
+import com.qxy.tiktlin.widget.BaseActivity
 import com.qxy.tiktlin.widget.immediateStatusBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -67,46 +64,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
     }
 
-    override fun initData() {
-        super.initData()
-        binding.viewPager.currentItem = 0
-        binding.bottomNav.getTabAt(0)?.select()
-    }
-
     override fun initView() {
         immediateStatusBar()
         binding.viewModel = viewModel
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        // 禁止滑动
-        binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount() = 5
+        setTabLayout(navController)
+    }
 
-            override fun createFragment(position: Int): Fragment {
-                return when (position) {
-                    0 -> HomeFragment()
-                    1 -> FriendFragment()
-                    2 -> AddVideoFragment()
-                    3 -> MessageFragment()
-                    else -> MeFragment()
-                }
-            }
-        }
-        TabLayoutMediator(binding.bottomNav, binding.viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = getString(R.string.title_home)
-                1 -> tab.text = getString(R.string.title_friend)
-                3 -> tab.text = getString(R.string.title_message)
-                4 -> tab.text = getString(R.string.title_me)
-            }
-        }.attach()
-        setTabLayout()
+    override fun initData() {
+        super.initData()
+        binding.bottomNav.getTabAt(0)?.select()
     }
 
     // TabLayout 自定义view
-    private fun setTabLayout() {
-
+    private fun setTabLayout(navController: NavController) {
         for (i in 0 until binding.bottomNav.tabCount) {
             val tab: TabLayout.Tab? = binding.bottomNav.getTabAt(i)
             if (tab != null) {
@@ -120,23 +92,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         binding.bottomNav.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             @SuppressLint("ResourceAsColor")
-            override fun onTabSelected(tab: TabLayout.Tab?) {
+            override fun onTabSelected(tab: TabLayout.Tab) {
                 //  设置背景
-                if (tab != null) {
-                    when (tab.position) {
-                        0,1,2 -> {
-                            binding.bottomNav.setBackgroundColor(Color.BLACK)
-                            binding.navAddVideo.setBackgroundResource(R.drawable.nav_add_video)
-                        }
-                        3,4 -> {
-                            binding.bottomNav.setBackgroundColor(Color.WHITE)
-                            binding.navAddVideo.setBackgroundResource(R.drawable.nav_add_video_black)
-                        }
+                when (tab.position) {
+                    0, 1, 2 -> {
+                        binding.bottomNav.setBackgroundColor(Color.BLACK)
+                        binding.tabAddVideo.setBackgroundResource(R.drawable.add_video)
+                    }
+                    3, 4 -> {
+                        binding.bottomNav.setBackgroundColor(Color.WHITE)
+                        binding.tabAddVideo.setBackgroundResource(R.drawable.add_video_black)
                     }
                 }
                 // 设置Text 颜色 Style
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
-                val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
+                val vgTab = vg.getChildAt(tab.position) as ViewGroup
                 val tabTextView = vgTab.getChildAt(2) as TextView
                 if (tab.position < 3) {
                     tabTextView.setTextColor(Color.WHITE)
@@ -147,20 +117,26 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                     tabTextView.setTypeface(null, Typeface.BOLD)
                     tabTextView.textSize = 16f
                 }
+
+                when (tab.position) {
+                    0 -> navController.navigateMain(R.id.nav_home)
+                    1 -> navController.navigateMain(R.id.nav_friend)
+                    2 -> navController.navigateMain(R.id.nav_add_video)
+                    3 -> navController.navigateMain(R.id.nav_message)
+                    4 -> navController.navigateMain(R.id.nav_me)
+                }
             }
 
-            @SuppressLint("ResourceAsColor")
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            override fun onTabUnselected(tab: TabLayout.Tab) {
                 val vg = binding.bottomNav.getChildAt(0) as ViewGroup
-                val vgTab = vg.getChildAt(tab!!.position) as ViewGroup
+                val vgTab = vg.getChildAt(tab.position) as ViewGroup
                 val tabTextView = vgTab.getChildAt(2) as TextView
                 tabTextView.setTextColor(Color.GRAY)
                 tabTextView.setTypeface(null, Typeface.NORMAL)
                 tabTextView.textSize = 15f
             }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
+            override fun onTabReselected(tab: TabLayout.Tab) = onTabSelected(tab)
         })
     }
 }

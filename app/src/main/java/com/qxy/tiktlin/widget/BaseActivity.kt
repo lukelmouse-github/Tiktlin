@@ -9,7 +9,7 @@ import com.drake.logcat.LogCat
 
 abstract class BaseActivity<Binding : ViewDataBinding>(
     @LayoutRes protected val layout: Int
-) : AppCompatActivity(layout) {
+) : AppCompatActivity() {
 
     protected lateinit var binding: Binding
 

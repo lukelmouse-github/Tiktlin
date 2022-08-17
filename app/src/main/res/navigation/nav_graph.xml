@@ -10,18 +10,22 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
+        android:id="@+id/nav_friend"
+        android:name="com.qxy.tiktlin.ui.FriendFragment"
+        android:label="@string/title_friend"
+        tools:layout="@layout/fragment_friend" />
+    <fragment
+        android:id="@+id/nav_add_video"
+        android:name="com.qxy.tiktlin.ui.AddVideoFragment"
+        tools:layout="@layout/fragment_add_video" />
+    <fragment
+        android:id="@+id/nav_message"
+        android:name="com.qxy.tiktlin.ui.MessageFragment"
+        android:label="@string/title_message"
+        tools:layout="@layout/fragment_message" />
+    <fragment
         android:id="@+id/nav_me"
         android:name="com.qxy.tiktlin.ui.MeFragment"
         android:label="@string/title_me"
         tools:layout="@layout/fragment_me" />
-    <fragment
-        android:id="@id/nav_friend"
-        android:name="com.qxy.tiktlin.ui.FriendFragment"
-        android:label="@string/title_friend"
-        tools:layout="@layout/fragment_friend"/>
-    <fragment
-        android:id="@id/nav_message"
-        android:name="com.qxy.tiktlin.ui.FriendFragment"
-        android:label="@string/title_friend"
-        tools:layout="@layout/fragment_friend"/>
 </navigation>

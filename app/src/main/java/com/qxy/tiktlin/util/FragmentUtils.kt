@@ -6,17 +6,32 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.navOptions
 
 val Fragment.navController get() = NavHostFragment.findNavController(this)
 
+fun NavController.navigateMain(@IdRes resId: Int) {
+    val options = navOptions {
+        popUpTo(graph.findStartDestination().id) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
+    navigate(resId, null, options)
+}
+
 fun Fragment.setupToolbar(
     toolbar: Toolbar,
-    title: String,
+    title: String?,
     @DrawableRes navigationIcon: Int? = null,
     navigationOnClick: View.OnClickListener? = null,
     @MenuRes menuRes: Int? = null,

@@ -11,6 +11,7 @@ import com.bytedance.sdk.open.aweme.common.model.BaseReq
 import com.bytedance.sdk.open.aweme.common.model.BaseResp
 import com.bytedance.sdk.open.douyin.DouYinOpenApiFactory
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
+import com.qxy.tiktlin.ui.AuthorizationAdapter
 
 class DouYinEntryActivity : Activity(), IApiEventHandler {
     private lateinit var douYinOpenApi: DouYinOpenApi

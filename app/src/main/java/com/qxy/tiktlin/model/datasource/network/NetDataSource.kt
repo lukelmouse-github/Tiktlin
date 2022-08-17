@@ -16,7 +16,7 @@ try {
  */
 
 object NetDataSource {
-  //  private val retrofit = ApiRetrofit.initConfig(AppConfig.BASE_URL)
+    private val retrofit = ApiRetrofit.initConfig(AppConfig.BASE_URL)
     val ApiService = ApiRetrofit.create<ApiService>()
     suspend fun getAccessToken(authCode: String) = ApiService.getAccessToken(AppConfig.CLIENT_SECRET, authCode, AppConfig.AUTHORIZATION_CODE, AppConfig.CLIENT_KEY)
     suspend fun getUserInfo(open_id: String = AppConfig.OPEN_ID, accessToken: String = AppConfig.ACCESS_TOKEN) = ApiService.getUserInfo(accessToken, open_id)

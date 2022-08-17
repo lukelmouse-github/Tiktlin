@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.douyinapi
+package com.qxy.tiktlin.ui
 
 import android.app.Activity
 import com.bytedance.sdk.open.aweme.authorize.model.Authorization
@@ -7,7 +7,6 @@ import com.bytedance.sdk.open.douyin.DouYinOpenConfig
 import com.bytedance.sdk.open.douyin.api.DouYinOpenApi
 import com.drake.logcat.LogCat
 import com.qxy.tiktlin.data.config.AppConfig
-import com.qxy.tiktlin.douyinapi.AuthorizationAdapter.AuthCallback
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 

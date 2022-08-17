@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.db.dao
+package com.qxy.tiktlin.model.datasource.database
 
 import androidx.room.Dao
 import androidx.room.Insert

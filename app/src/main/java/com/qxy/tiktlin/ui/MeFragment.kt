@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.fragment
+package com.qxy.tiktlin.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -12,8 +12,6 @@ import com.drake.logcat.LogCat
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.R
-
-import com.qxy.tiktlin.model.datasource.network.NetDataSource
 import com.qxy.tiktlin.widget.BaseFragment
 import com.qxy.tiktlin.databinding.FragmentMeBinding
 import com.qxy.tiktlin.model.datasource.database.LocalDataSource

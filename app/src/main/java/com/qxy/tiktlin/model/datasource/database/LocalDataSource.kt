@@ -1,8 +1,7 @@
 package com.qxy.tiktlin.model.datasource.database
 
 import com.qxy.tiktlin.data.config.AppConfig
-import com.qxy.tiktlin.model.datasource.database.TikDatabase
-import com.qxy.tiktlin.model.datasource.database.User
+
 
 /**
 调用示例

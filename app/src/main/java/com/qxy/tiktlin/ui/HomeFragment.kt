@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.fragment
+package com.qxy.tiktlin.ui
 
 import androidx.fragment.app.viewModels
 import com.qxy.tiktlin.widget.BaseFragment

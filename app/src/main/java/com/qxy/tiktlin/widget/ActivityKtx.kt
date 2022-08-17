@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.common.ktx
+package com.qxy.tiktlin.widget
 
 import android.app.Activity
 import android.app.Application

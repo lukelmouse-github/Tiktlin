@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.common.util
+package com.qxy.tiktlin.util
 
 import android.graphics.Bitmap
 import android.graphics.BitmapShader

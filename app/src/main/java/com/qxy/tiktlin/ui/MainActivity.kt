@@ -1,4 +1,4 @@
-package com.qxy.tiktlin
+package com.qxy.tiktlin.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -14,21 +14,16 @@ import com.drake.logcat.LogCat
 import com.drake.tooltip.toast
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.qxy.tiktlin.R
 import com.qxy.tiktlin.widget.BaseActivity
-import com.qxy.tiktlin.common.ktx.immediateStatusBar
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.model.datasource.database.TikDatabase
 import com.qxy.tiktlin.model.datasource.database.User
-import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
-import com.qxy.tiktlin.fragment.AddVideoFragment
-import com.qxy.tiktlin.fragment.FriendFragment
-import com.qxy.tiktlin.fragment.HomeFragment
-import com.qxy.tiktlin.fragment.MeFragment
-import com.qxy.tiktlin.fragment.MessageFragment
 
 import com.qxy.tiktlin.ui.vm.MainViewModel
 import com.qxy.tiktlin.model.datasource.network.NetDataSource
+import com.qxy.tiktlin.widget.immediateStatusBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

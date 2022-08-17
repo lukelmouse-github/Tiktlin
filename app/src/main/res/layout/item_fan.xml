@@ -1,14 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <data>
+        <import type="kotlinx.coroutines.flow.StateFlow" />
+        <variable
+            name="movie"
+            type="com.rdc.myapplication.model.bean.MovieBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:background="?selectableItemBackground"
+        android:paddingBottom="@dimen/interval_width"
+        android:paddingTop="@dimen/interval_width"
+        tools:targetApi="o">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/interval_normal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/interval_normal" />
 
 
-</LinearLayout>  
+        <ImageView
+            android:id="@+id/bookmark_session"
+            android:layout_width="@dimen/interval_width"
+            android:layout_height="@dimen/interval_width"
+            app:srcCompat="@drawable/ic_heat_flane"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--以后可以添加点击方法的绑定-->
+
+        <ImageView
+            android:id="@+id/iv_movie"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="14dp"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:maxWidth="100dp"
+            android:maxHeight="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pic_lemon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_start" />
+
+
+        <TextView
+            android:id="@+id/tv_MovieName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movie.movieName}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.020"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            tools:text="人生大事" />
+
+
+
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movie.time}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toTopOf="@id/tv_MovieName"
+            app:layout_constraintVertical_bias="0.20"
+            app:layout_constraintHorizontal_bias="0.020"
+            tools:text="2022-04-09 播出" />
+
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movie.area}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toTopOf="@id/tv_score"
+            app:layout_constraintHorizontal_bias="0.020"
+            app:layout_constraintVertical_bias="0.25"
+            tools:text="2022-04-09 播出" />
+
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{movie.time}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toBottomOf="@+id/tv_area"
+            app:layout_constraintHorizontal_bias="0.020"
+            app:layout_constraintVertical_bias="0.15"
+            tools:text="2022-04-09 播出" />
+
+        <ImageView
+            android:id="@+id/iv_flane"
+            android:layout_width="12dp"
+            android:layout_height="16dp"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:maxWidth="14dp"
+            android:maxHeight="18dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@id/iv_movie"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.1"
+            android:src="@drawable/ic_heat_flane"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time"
+            app:layout_constraintVertical_bias="0.9" />
+
+        <TextView
+            android:id="@+id/tv_flane"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{movie.time}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@id/iv_movie"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/iv_flane"
+            app:layout_constraintTop_toBottomOf="@+id/tv_time"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="2022-04-09 播出" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bu_but"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:text="@string/buy_button"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/bu_buy"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toEndOf="@id/iv_movie"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.douyinapi
+package com.qxy.tiktlin.ui
 
 import android.app.Activity
 import android.content.Intent

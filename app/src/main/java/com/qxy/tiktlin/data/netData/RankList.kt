@@ -1,5 +1,6 @@
-package com.qxy.tiktlin.common.rsp
+package com.qxy.tiktlin.data.netData
 
+import com.qxy.tiktlin.data.netData.Extra
 import java.io.Serializable
 
 // https://open.douyin.com/platform/doc?doc=docs/openapi/data-open-service/douyin-tv-tops-data/get-douyin-tv-tops

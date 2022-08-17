@@ -1,10 +1,10 @@
 package com.qxy.tiktlin.model.datasource.network
 
-import com.qxy.tiktlin.common.rsp.AccessToken
-import com.qxy.tiktlin.common.rsp.ClientToken
-import com.qxy.tiktlin.common.rsp.Fans
-import com.qxy.tiktlin.common.rsp.RankList
-import com.qxy.tiktlin.common.rsp.UserInfo
+import com.qxy.tiktlin.data.netData.AccessToken
+import com.qxy.tiktlin.data.netData.ClientToken
+import com.qxy.tiktlin.data.netData.Fans
+import com.qxy.tiktlin.data.netData.UserInfo
+import com.qxy.tiktlin.data.netData.RankList
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET

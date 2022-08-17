@@ -5,9 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.ViewDataBinding
 import com.drake.logcat.LogCat
-import com.qxy.tiktlin.common.ktx.bindView
-import com.qxy.tiktlin.common.ktx.immediateStatusBar
-import com.qxy.tiktlin.common.ktx.viewLifeCycleOwner
+
 
 abstract class BaseActivity<Binding : ViewDataBinding>(
     @LayoutRes protected val layout: Int

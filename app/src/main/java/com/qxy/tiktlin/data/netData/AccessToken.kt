@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.common.rsp
+package com.qxy.tiktlin.data.netData
 
 import java.io.Serializable
 

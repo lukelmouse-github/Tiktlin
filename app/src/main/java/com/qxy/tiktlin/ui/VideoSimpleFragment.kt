@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.fragment
+package com.qxy.tiktlin.ui
 
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.databinding.FragmentVideoSimpleBinding

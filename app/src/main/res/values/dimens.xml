@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="list_paddingBotton">8dp</dimen>
-    <dimen name="lsit_paddingTop">8do</dimen>
+    <dimen name="lsit_paddingTop">8dp</dimen>
 </resources>

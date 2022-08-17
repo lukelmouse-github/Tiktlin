@@ -2,8 +2,8 @@ package com.qxy.tiktlin.ui.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.qxy.tiktlin.common.rsp.Extra
-import com.qxy.tiktlin.common.rsp.Fans
+import com.qxy.tiktlin.data.netData.Extra
+import com.qxy.tiktlin.data.netData.Fans
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

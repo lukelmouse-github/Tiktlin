@@ -35,6 +35,6 @@
 
         <argument
             android:name="videoData"
-            app:argType="com.qxy.tiktlin.data.netData.VideoData$Video" />
+            app:argType="com.qxy.tiktlin.data.netData.VideoList$Video" />
     </fragment>
 </navigation>

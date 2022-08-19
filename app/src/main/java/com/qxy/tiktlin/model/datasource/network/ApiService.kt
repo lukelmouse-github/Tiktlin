@@ -1,6 +1,5 @@
 package com.qxy.tiktlin.model.datasource.network
 
-import com.qxy.tiktlin.data.netData.VideoData
 import com.qxy.tiktlin.data.netData.VideoList
 import com.qxy.tiktlin.data.netData.*
 import retrofit2.http.*
@@ -62,10 +61,8 @@ interface ApiService {
         @Query("count") count: Int
     ): VideoList
 
-    @POST("/video/data/")
-    suspend fun getVideoData(
-        @Header("access-token") access_token: String,
-        @Query("open_id") open_id: String,
-        @Body item_ids: VideoData.QueryBody
-    ): VideoData
+    @GET("https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/")
+    suspend fun getIesVideoData(
+        @Query("item_ids") item_ids: Long
+    ): IesVideoData
 }

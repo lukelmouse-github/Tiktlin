@@ -13,17 +13,19 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <VideoView
+            <com.google.android.exoplayer2.ui.StyledPlayerView
                 android:id="@+id/video"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:visibility="gone" />
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -42,6 +44,8 @@
                 android:id="@+id/account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.viewData.account}"
+                android:textAppearance="?textAppearanceBodySmall"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@id/title"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -52,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@{viewModel.viewData.createTime}"
+                android:textAppearance="?textAppearanceBodySmall"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toTopOf="@+id/title"
                 app:layout_constraintStart_toEndOf="@+id/account"
@@ -62,10 +67,58 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.viewData.title}"
+                android:textAppearance="?textAppearanceBodyLarge"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/downloads"
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:text="测试视频标题" />
+
+            <TextView
+                android:id="@+id/downloads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.viewData.downloads}"
+                android:textColor="@android:color/white"
+                app:drawableStartCompat="@drawable/baseline_download_18"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="1000" />
+
+            <TextView
+                android:id="@+id/forwards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.viewData.forwards}"
+                android:textColor="@android:color/white"
+                app:drawableStartCompat="@drawable/ic_baseline_redo_18"
+                app:layout_constraintBottom_toBottomOf="@id/downloads"
+                app:layout_constraintStart_toEndOf="@id/downloads"
+                tools:text="1000" />
+
+            <TextView
+                android:id="@+id/plays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.viewData.plays}"
+                android:textColor="@android:color/white"
+                app:drawableStartCompat="@drawable/baseline_play_arrow_18"
+                app:layout_constraintBottom_toBottomOf="@id/downloads"
+                app:layout_constraintStart_toEndOf="@id/forwards"
+                tools:text="1000" />
+
+            <TextView
+                android:id="@+id/shares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{viewModel.viewData.shares}"
+                android:textColor="@android:color/white"
+                app:drawableStartCompat="@drawable/baseline_share_18"
+                app:layout_constraintBottom_toBottomOf="@id/downloads"
+                app:layout_constraintStart_toEndOf="@id/plays"
+                tools:text="1000" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/like"

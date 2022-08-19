@@ -1,6 +1,5 @@
 package com.qxy.tiktlin.model.repository
 
-import com.qxy.tiktlin.data.netData.VideoData
 import com.qxy.tiktlin.data.config.AppConfig
 import com.qxy.tiktlin.model.datasource.database.TikDatabase
 import com.qxy.tiktlin.model.datasource.database.User
@@ -25,5 +24,5 @@ object Repository {
     suspend fun getFans(cursor: Long, count: Int) = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)
     suspend fun getFollows(cursor: Long, count: Int) = ApiService.getUserFollow(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data.total
     suspend fun getVideoList(cursor: Long? = null, count: Int) = ApiService.getVideoList(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data
-    suspend fun getVideoData(item_id: String) = ApiService.getVideoData(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, VideoData.QueryBody(listOf(item_id))).data
+    suspend fun getIesVideoData(video_id: Long) = ApiService.getIesVideoData(video_id).item_list[0]
 }

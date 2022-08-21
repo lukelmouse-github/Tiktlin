@@ -2,16 +2,20 @@ package com.qxy.tiktlin.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.qxy.tiktlin.R
+import com.qxy.tiktlin.data.netData.VideoList
+import com.qxy.tiktlin.data.netData.VideoPlay
 import com.qxy.tiktlin.databinding.FragmentVideoSimpleBinding
 import com.qxy.tiktlin.model.repository.Repository
+import com.qxy.tiktlin.util.navController
 import com.qxy.tiktlin.widget.BaseFragment
 import com.qxy.tiktlin.widget.VideoListAdapter
 import kotlinx.coroutines.launch
 
-class VideoSimpleFragment(): BaseFragment<FragmentVideoSimpleBinding>(R.layout.fragment_video_simple) {
+class VideoSimpleFragment(): BaseFragment<FragmentVideoSimpleBinding>(R.layout.fragment_video_simple), VideoListAdapter.OnVideoClickListener{
     private var tagName: String = "作品"
 
     private lateinit var videoListAdapter : VideoListAdapter
@@ -27,6 +31,7 @@ class VideoSimpleFragment(): BaseFragment<FragmentVideoSimpleBinding>(R.layout.f
     override fun initView() {
         super.initView()
         videoListAdapter = VideoListAdapter()
+        videoListAdapter.setVideoClickListener(this)
         gridLayoutManager = GridLayoutManager(context,3)
         binding.videoListRecycler.layoutManager = gridLayoutManager
         binding.videoListRecycler.adapter = videoListAdapter
@@ -49,4 +54,15 @@ class VideoSimpleFragment(): BaseFragment<FragmentVideoSimpleBinding>(R.layout.f
             }
         }
     }
+
+    override fun onItemClick(video: VideoList.Video) {
+        Log.d("TAG", "abc onItemClick: " + video.item_id + video.title)
+        lifecycleScope.launch {
+            val lists = listOf<VideoPlay?>(Repository.getVideoPlay(video))
+            val videos = lists.filterNotNull().toTypedArray()
+            val args = VideoDetailFragmentArgs(videos)
+            navController.navigate(R.id.nav_video_detail, args.toBundle())
+        }
+    }
+
 }

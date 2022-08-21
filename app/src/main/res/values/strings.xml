@@ -10,4 +10,9 @@
     <string name="like">赞</string>
     <string name="first_comment">抢首评</string>
     <string name="no_find_data">数据获取失败</string>
+    <string name="attemtion">关注</string>
+    <string name="me_label_fans">粉丝</string>
+    <string name="me_label_followers">关注</string>
+    <string name="gender">性别</string>
+    <string name="portrait">头像</string>
 </resources>

@@ -23,7 +23,7 @@ object Repository {
     suspend fun getRankList(type: Int) = ApiService.getRank(AppConfig.CLIENT_TOKEN ,type)
     suspend fun getTotalFans() = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, 0, 1).data.total
     suspend fun getFans(cursor: Long, count: Int) = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)
-    suspend fun getFollows(cursor: Long, count: Int) = ApiService.getUserFollow(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data.total
+    suspend fun getFollows(cursor: Long, count: Int) = ApiService.getUserFollow(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)
     suspend fun getVideoList(cursor: Long? = null, count: Int) = ApiService.getVideoList(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data
     suspend fun getVideoData(item_id: String) = ApiService.getVideoData(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, VideoData.QueryBody(listOf(item_id))).data
 }

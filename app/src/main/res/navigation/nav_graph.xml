@@ -27,7 +27,26 @@
         android:id="@+id/nav_me"
         android:name="com.qxy.tiktlin.ui.MeFragment"
         android:label="@string/title_me"
-        tools:layout="@layout/fragment_me" />
+        tools:layout="@layout/fragment_me">
+        <action
+            android:id="@+id/nav_to_both"
+            app:destination="@+id/nav_me_both" >
+            <argument
+                android:name="page_id"
+                app:argType="integer"
+                android:defaultValue="0"/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_me_both"
+        android:name="com.qxy.tiktlin.ui.MeBothFragment"
+        tools:layout="@layout/fragment_me_both">
+        <argument
+            android:name="page_id"
+            app:argType="integer" />
+    </fragment>
+
     <fragment
         android:id="@+id/nav_video_detail"
         android:name="com.qxy.tiktlin.ui.VideoDetailFragment"

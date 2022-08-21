@@ -21,6 +21,7 @@ object Repository {
     suspend fun getAccessToken(authCode: String) = ApiService.getAccessToken(AppConfig.CLIENT_SECRET, authCode, AppConfig.AUTHORIZATION_CODE, AppConfig.CLIENT_KEY)
     suspend fun getUserInfo(open_id: String = AppConfig.OPEN_ID, accessToken: String = AppConfig.ACCESS_TOKEN) = ApiService.getUserInfo(accessToken, open_id)
     suspend fun getClientToken() = ApiService.getClientToken(AppConfig.CLIENT_KEY, AppConfig.CLIENT_SECRET, "client_credential")
+    // 榜单类型： * 1 - 电影 * 2 - 电视剧 * 3 - 综艺
     suspend fun getRankList(type: Int) = ApiService.getRank(AppConfig.CLIENT_TOKEN ,type)
     suspend fun getTotalFans() = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, 0, 1).data.total
     suspend fun getFans(cursor: Long, count: Int) = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)

@@ -1,4 +1,4 @@
-package com.qxy.tiktlin.ui.theme
+package com.qxy.tiktlin.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -37,6 +37,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 Repository.getAccessToken(it).data.let { data ->
                     AppConfig.ACCESS_TOKEN = data.access_token
                     AppConfig.OPEN_ID = data.open_id
+                    AppConfig.CLIENT_TOKEN = Repository.getClientToken().data.access_token
                     LogCat.d(AppConfig.ACCESS_TOKEN)
                     LogCat.d(AppConfig.OPEN_ID)
                     val user = Repository.getUserInfo()
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //         测试打开
 //        AppConfig.ACCESS_TOKEN = "act.6565e48cc3c93ccbdf8f79ee9bd02b6e6XuRbU6Trs1MvfrsGJIej6gqdGyk"
 //        AppConfig.OPEN_ID = "_000CojbsHqIehmLb4PXfnnDj0mIfBs3d7L3"
+//        AppConfig.CLIENT_TOKEN = "clt.5b69cfe31cc46ba2e9320bbd15591f32a6sCVIX8qRkS5KnIsakwwwPMeMtM"
     }
 
     override fun initView() {

@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_video_detail">
 
         <argument
-            android:name="videoData"
-            app:argType="com.qxy.tiktlin.data.netData.VideoList$Video" />
+            android:name="videos"
+            app:argType="com.qxy.tiktlin.data.netData.VideoPlay[]" />
     </fragment>
 </navigation>

@@ -1,6 +1,8 @@
 package com.qxy.tiktlin.model.repository
 
 import com.qxy.tiktlin.data.config.AppConfig
+import com.qxy.tiktlin.data.netData.VideoList
+import com.qxy.tiktlin.data.netData.VideoPlay
 import com.qxy.tiktlin.model.datasource.database.TikDatabase
 import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.model.datasource.network.ApiRetrofit
@@ -24,5 +26,10 @@ object Repository {
     suspend fun getFans(cursor: Long, count: Int) = ApiService.getUserFans(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count)
     suspend fun getFollows(cursor: Long, count: Int) = ApiService.getUserFollow(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data.total
     suspend fun getVideoList(cursor: Long? = null, count: Int) = ApiService.getVideoList(AppConfig.ACCESS_TOKEN, AppConfig.OPEN_ID, cursor, count).data
-    suspend fun getIesVideoData(video_id: Long) = ApiService.getIesVideoData(video_id).item_list[0]
+    suspend fun getVideoPlay(video: VideoList.Video): VideoPlay? {
+        val itemList = ApiService.getIesVideoData(video.video_id).item_list
+        if (itemList.isEmpty()) return null
+        val iesVideoData = itemList[0]
+        return VideoPlay(video, iesVideoData.author.nickname, iesVideoData.video.play_addr.url_list.firstOrNull())
+    }
 }

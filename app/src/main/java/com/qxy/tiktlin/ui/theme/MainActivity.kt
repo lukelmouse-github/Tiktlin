@@ -13,8 +13,10 @@ import com.drake.logcat.LogCat
 import com.drake.tooltip.toast
 import com.google.android.material.tabs.TabLayout
 import com.qxy.tiktlin.R
+import com.qxy.tiktlin.data.adapter.MovieRankAdapter
 import com.qxy.tiktlin.util.navigateMain
 import com.qxy.tiktlin.data.config.AppConfig
+import com.qxy.tiktlin.data.netData.RankList
 import com.qxy.tiktlin.databinding.ActivityMainBinding
 import com.qxy.tiktlin.douyinapi.AuthorizationAdapter
 import com.qxy.tiktlin.model.datasource.database.User
@@ -139,4 +141,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             override fun onTabReselected(tab: TabLayout.Tab) = onTabSelected(tab)
         })
     }
+
+
+
 }

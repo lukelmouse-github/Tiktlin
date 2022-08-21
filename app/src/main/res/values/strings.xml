@@ -14,4 +14,11 @@
     <string name="play">播放</string>
     <string name="share">分享</string>
     <string name="no_find_data">数据获取失败</string>
+    <!--TODO: Ranks -->
+    <string name="MovieRankName">电影榜</string>
+    <string name="TvRankName">电视剧榜</string>
+    <string name="VarietyRankName">综艺榜</string>
+    <string name="todo">TODO</string>
+    <string name="string_valueof_rank_hot">String.valueof(@{Rank.hot}</string>
+    <string name="测试">购买</string>
 </resources>

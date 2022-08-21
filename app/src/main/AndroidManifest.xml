@@ -4,6 +4,7 @@
     package="com.qxy.tiktlin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".widget.App"
         android:allowBackup="true"
@@ -16,6 +17,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.theme.RankActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.theme.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -24,7 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".douyinapi.DouYinEntryActivity"
             android:exported="true"

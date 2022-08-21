@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="kotlinx.coroutines.flow.StateFlow" />
+
+        <variable
+            name="Rank"
+            type="com.qxy.tiktlin.data.netData.RankList.Data.RankItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:paddingBottom="@dimen/lsit_paddingTop"
+        android:paddingTop="@dimen/lsit_paddingTop"
+        tools:targetApi="o">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="48dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="363dp" />
+
+
+        <!--以后可以添加点击方法的绑定-->
+
+        <ImageView
+            android:id="@+id/mv_poster"
+            android:layout_width="80dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginStart="20dp"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:maxWidth="100dp"
+            android:maxHeight="160dp"
+            android:scaleType="centerCrop"
+            android:src="@{Rank.poster}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_start" />
+
+
+        <TextView
+            android:id="@+id/mv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Rank.name}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.061"
+            app:layout_constraintStart_toEndOf="@id/mv_poster"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.062"
+            tools:text="人生大事" />
+
+        <TextView
+            android:id="@+id/mv_director"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Rank.directors[0]}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toEndOf="@id/mv_poster"
+            app:layout_constraintTop_toTopOf="@id/mv_name"
+            app:layout_constraintVertical_bias="0.31"
+            tools:text="2022-04-09 播出" />
+
+        <TextView
+            android:id="@+id/mv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Rank.tags[0]}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toEndOf="@id/mv_poster"
+            app:layout_constraintTop_toTopOf="@id/mv_director"
+            app:layout_constraintVertical_bias="0.2"
+            tools:text="2022-04-09 播出" />
+
+        <TextView
+            android:id="@+id/mv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Rank.release_data}"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toEndOf="@id/mv_poster"
+            app:layout_constraintTop_toBottomOf="@+id/mv_tag"
+            app:layout_constraintVertical_bias="0.04"
+            tools:text="2022-04-09 播出" />
+
+        <ImageView
+            android:id="@+id/iv_flane"
+            android:layout_width="12dp"
+            android:layout_height="16dp"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:maxWidth="14dp"
+            android:maxHeight="18dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/iv_hot"
+            app:layout_constraintBottom_toBottomOf="@id/mv_poster"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toEndOf="@id/mv_poster"
+            app:layout_constraintTop_toBottomOf="@+id/mv_time"
+            app:layout_constraintVertical_bias="0.95" />
+
+        <TextView
+            android:id="@+id/mv_flane"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/string_valueof_rank_hot"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toBottomOf="@id/mv_poster"
+            app:layout_constraintEnd_toStartOf="@id/guideline_end"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/iv_flane"
+            app:layout_constraintTop_toBottomOf="@+id/mv_time"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="2022-04-09 播出" />
+
+        <Button
+            android:id="@+id/Buybutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/测试"
+            tools:layout_editor_absoluteX="291dp"
+            tools:layout_editor_absoluteY="42dp"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

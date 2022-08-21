@@ -41,6 +41,18 @@ abstract class BaseFragment<Binding : ViewDataBinding>(
     open fun initData() {
     }
 
+    open fun initMovieRank(){
+
+    }
+
+    open fun initTvRank(){
+
+    }
+
+    open fun initVaRank(){
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

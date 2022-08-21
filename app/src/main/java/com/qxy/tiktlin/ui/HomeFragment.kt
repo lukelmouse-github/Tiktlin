@@ -23,8 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         binding.testVideo.setOnClickListener {
             lifecycleScope.launch {
                 val list = Repository.getVideoList(count = 10).list
-                val videos = list.mapNotNull { Repository.getVideoPlay(it) }.toTypedArray()
-                val args = VideoDetailFragmentArgs(videos)
+                val args = VideoDetailFragmentArgs(list[0])
                 navController.navigate(R.id.nav_video_detail, args.toBundle())
             }
         }

@@ -32,7 +32,6 @@
         android:id="@+id/nav_video_detail"
         android:name="com.qxy.tiktlin.ui.VideoDetailFragment"
         tools:layout="@layout/fragment_video_detail">
-
         <argument
             android:name="videos"
             app:argType="com.qxy.tiktlin.data.netData.VideoPlay[]" />

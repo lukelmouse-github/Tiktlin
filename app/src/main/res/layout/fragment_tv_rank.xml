@@ -1,0 +1,42 @@
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qxy.tiktlin.ui.vm.TvRankViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pic_rank_tvshow"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="-6dp"
+        android:contentDescription="@string/todo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/TvRankRecycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_tv_rank"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="160dp"
+            tools:ignore="MissingConstraints" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,115 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.VideoDetailFragment">
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.qxy.tiktlin.ui.vm.VideoDetailViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
 
-            <VideoView
-                android:id="@+id/video"
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:fitsSystemWindows="true"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize" />
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <TextView
-                android:id="@+id/account"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@id/title"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:text="\@测试账号" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@{viewModel.viewData.createTime}"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/title"
-                app:layout_constraintStart_toEndOf="@+id/account"
-                tools:text="·  2022.8.16 23:00" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.viewData.title}"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:text="测试视频标题" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/like"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:text="@{viewModel.viewData.likes}"
-                android:textColor="@android:color/white"
-                app:icon="@drawable/like"
-                app:iconGravity="top"
-                app:iconSize="@dimen/video_right_button_size"
-                app:layout_constraintBottom_toTopOf="@id/comment"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/like" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:text="@{viewModel.viewData.comments}"
-                android:textColor="@android:color/white"
-                app:icon="@drawable/comment"
-                app:iconGravity="top"
-                app:iconSize="@dimen/video_right_button_size"
-                app:layout_constraintBottom_toTopOf="@id/more"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/first_comment" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:background="@android:color/transparent"
-                android:gravity="center_horizontal"
-                android:textColor="@android:color/white"
-                app:icon="@drawable/more"
-                app:iconPadding="0dp"
-                app:iconSize="@dimen/video_right_button_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="?attr/actionBarSize" />
+        </com.google.android.material.appbar.AppBarLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

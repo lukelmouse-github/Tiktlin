@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ui.theme.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +30,7 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity="com.qxy.tiktlin" />
+        <activity android:name=".ui.HotActivity"/>
     </application>
 
 </manifest>

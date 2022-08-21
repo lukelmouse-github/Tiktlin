@@ -58,6 +58,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:visibility="invisible"
                 app:goneUnless="@{!viewModel.isEmpty &amp;&amp; !viewModel.isLoading}"
                 tools:targetApi="o"
                 tools:visibility="visible" />

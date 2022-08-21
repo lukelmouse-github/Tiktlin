@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/coverImg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@color/bg_gray"
+        android:layout_width="120dp"
+        android:layout_height="180dp"/>
+
+    <TextView
+        android:id="@+id/name"
+        app:layout_constraintLeft_toRightOf="@id/coverImg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="15dp"
+        android:text="人生大事"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        app:layout_constraintLeft_toRightOf="@id/coverImg"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/text_normal"
+        android:id="@+id/douban"
+        android:text="豆瓣评分 7.4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/movieType"
+        app:layout_constraintTop_toBottomOf="@id/douban"
+        app:layout_constraintLeft_toRightOf="@id/coverImg"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/text_normal"
+        android:layout_marginTop="5dp"
+        android:text="剧情 / 治愈"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/releaseDate"
+        android:text="2022-07-07上映"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintLeft_toRightOf="@id/coverImg"
+        app:layout_constraintTop_toBottomOf="@id/movieType"
+        android:textColor="@color/text_normal"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/hotNum"
+        android:layout_marginLeft="15dp"
+        android:text="1294.5 万"
+        app:layout_constraintLeft_toRightOf="@id/coverImg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/text_normal"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/getTicket"
+        android:text="购票"
+        android:background="@color/red_pink"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="40dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

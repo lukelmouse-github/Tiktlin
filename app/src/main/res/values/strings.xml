@@ -9,6 +9,10 @@
     <string name="works">作品</string>
     <string name="like">赞</string>
     <string name="first_comment">抢首评</string>
+    <string name="download">下载</string>
+    <string name="forward">转发</string>
+    <string name="play">播放</string>
+    <string name="share">分享</string>
     <string name="no_find_data">数据获取失败</string>
     <string name="attemtion">关注</string>
     <string name="me_label_fans">粉丝</string>

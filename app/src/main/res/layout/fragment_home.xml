@@ -35,7 +35,7 @@
                 android:id="@+id/test_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="测试视频"
+                android:text="开始刷视频"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

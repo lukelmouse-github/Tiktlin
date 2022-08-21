@@ -30,6 +30,7 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:taskAffinity="com.qxy.tiktlin" />
+        <activity android:name=".ui.HotActivity"/>
     </application>
 
 </manifest>

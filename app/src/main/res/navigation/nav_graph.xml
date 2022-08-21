@@ -37,4 +37,7 @@
             android:name="videos"
             app:argType="com.qxy.tiktlin.data.netData.VideoPlay[]" />
     </fragment>
+    <activity
+        android:id="@+id/nav_hot"
+        android:name="com.qxy.tiktlin.ui.HotActivity"/>
 </navigation>

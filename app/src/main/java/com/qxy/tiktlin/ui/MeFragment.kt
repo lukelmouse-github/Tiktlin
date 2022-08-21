@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.drake.logcat.LogCat
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qxy.tiktlin.R
 import com.qxy.tiktlin.widget.BaseFragment
 import com.qxy.tiktlin.databinding.FragmentMeBinding
 import com.qxy.tiktlin.model.repository.Repository
+import com.qxy.tiktlin.util.navController
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -58,7 +58,7 @@ class MeFragment : BaseFragment<FragmentMeBinding>(R.layout.fragment_me) {
             }
         }
         binding.search.setOnClickListener {
-
+            navController.navigate(R.id.nav_hot)
         }
     }
 

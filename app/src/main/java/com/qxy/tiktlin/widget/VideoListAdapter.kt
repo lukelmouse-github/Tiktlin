@@ -36,7 +36,6 @@ class VideoListAdapter() :
         val worksVideo = videoList[position]
         holder.setData(worksVideo)
         holder.itemView.setOnClickListener {
-            Log.d("TAG", "abc onItemClick: " + videoList[position].item_id + videoList[position].title)
             onVideoClickListener.onItemClick(videoList[position])
         }
     }

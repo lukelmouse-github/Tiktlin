@@ -56,7 +56,6 @@ class VideoSimpleFragment(): BaseFragment<FragmentVideoSimpleBinding>(R.layout.f
     }
 
     override fun onItemClick(video: VideoList.Video) {
-        Log.d("TAG", "abc onItemClick: " + video.item_id + video.title)
         lifecycleScope.launch {
             val lists = listOf<VideoPlay?>(Repository.getVideoPlay(video))
             val videos = lists.filterNotNull().toTypedArray()

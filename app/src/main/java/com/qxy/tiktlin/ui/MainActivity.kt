@@ -6,6 +6,8 @@ import android.graphics.Typeface
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,6 +23,7 @@ import com.qxy.tiktlin.model.datasource.database.User
 import com.qxy.tiktlin.model.repository.Repository
 import com.qxy.tiktlin.ui.vm.MainViewModel
 import com.qxy.tiktlin.widget.BaseActivity
+import com.qxy.tiktlin.widget.doOnApplyWindowInsets
 import com.qxy.tiktlin.widget.immediateStatusBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -92,6 +95,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
             }
         }
 
+        binding.container.doOnApplyWindowInsets { v, insets, padding ->
+            val systemInsets = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
+            v.updatePadding(bottom = padding.bottom + systemInsets.bottom)
+        }
+
         binding.bottomNav.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             @SuppressLint("ResourceAsColor")
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -137,6 +147,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 tabTextView.setTypeface(null, Typeface.NORMAL)
                 tabTextView.textSize = 15f
             }
+
+
 
             override fun onTabReselected(tab: TabLayout.Tab) = onTabSelected(tab)
         })

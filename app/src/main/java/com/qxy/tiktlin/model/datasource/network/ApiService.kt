@@ -51,7 +51,7 @@ interface ApiService {
         @Query("open_id") open_id: String,
         @Query("cursor") cursor: Long,
         @Query("count") count: Int
-    ): Fans
+    ): Follows
 
     @GET("/video/list/")
     suspend fun getVideoList(

@@ -9,7 +9,7 @@
 
         <variable
             name="user"
-            type="com.qxy.tiktlin.data.netData.Fans.Data.User" />
+            type="com.qxy.tiktlin.data.netData.Follows.Data.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

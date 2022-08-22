@@ -27,8 +27,11 @@ class FansViewModel: ViewModel()  {
     private var course :Long=-1
 
     suspend fun get(){
+        _isLoading.emit(true)
         course++
         _fansUiData.emit(Repository.getFans(course,20))
+        _isEmpty.emit(false)
+        _isLoading.emit(false)
     }
 
 
@@ -40,12 +43,12 @@ class FansViewModel: ViewModel()  {
 
     fun onSwipeRefresh() {
         viewModelScope.launch {
-            _swipeRefreshing.emit(true)
-            _isLoading.emit(false)
-            //代表首页的一个下拉刷新操作
-            delay(500)
             _isLoading.emit(true)
+            _swipeRefreshing.emit(true)
+            delay(400)
+            course=-1
             _swipeRefreshing.emit(false)
+            _isLoading.emit(false)
         }
     }
 }

@@ -82,7 +82,7 @@ class FollowsFranment: Fragment() {
 
             launch {
                 followsViewModel.errorMessage.collect { errorMsg ->
-                    Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
+             //       Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
                 }
             }
         }

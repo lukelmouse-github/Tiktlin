@@ -1,5 +1,6 @@
 package com.qxy.tiktlin.util
 
+
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -10,10 +11,20 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.tiktlin.R
+import com.qxy.tiktlin.widget.CustomSwipeRefreshLayout
+
 
 @BindingAdapter("goneUnless")
 fun goneUnless(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+/**
+ * Sets the colors of the [CustomSwipeRefreshLayout] loading indicator.
+ */
+@BindingAdapter("swipeRefreshColors")
+fun setSwipeRefreshColors(swipeRefreshLayout: CustomSwipeRefreshLayout, colorResIds: IntArray) {
+    swipeRefreshLayout.setColorSchemeColors(*colorResIds)
 }
 
 @BindingAdapter("loadAvatar")
@@ -37,12 +48,15 @@ fun imageUri(imageView: ImageView, imageUri: Uri?, placeholder: Drawable?) {
         null -> {
             Glide.with(imageView)
                 .load(placeholder)
+                .fitCenter()
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageView)
         }
         else -> {
             Glide.with(imageView)
                 .load(imageUri)
-                .apply(RequestOptions().placeholder(placeholder))
+                .fitCenter()
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageView)
         }
     }

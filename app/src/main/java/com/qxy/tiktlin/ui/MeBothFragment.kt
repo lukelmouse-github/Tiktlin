@@ -30,12 +30,21 @@ class MeBothFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.viewpager.adapter = MeBothAdapter(this)
+        val meBothAdapter=MeBothAdapter(this)
+        meBothAdapter.notifyItemInserted(args.pageId)
+        binding.viewpager.adapter = meBothAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->
             tab.text = resources.getString(INFO_TITLES[position])
         }.attach()
-        binding.viewpager.setCurrentItem(args.pageId)
+
+        binding.tabLayout.post {
+            binding.tabLayout.selectTab(binding.tabLayout.getTabAt(args.pageId))
+            binding.viewpager.post {
+                binding.viewpager.setCurrentItem(args.pageId)
+                binding.viewpager.requestTransform()
+            }
+        }
     }
 
 

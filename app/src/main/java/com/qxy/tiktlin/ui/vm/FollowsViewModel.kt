@@ -45,6 +45,7 @@ class FollowsViewModel : ViewModel()  {
             _isLoading.emit(true)
             _swipeRefreshing.emit(true)
             delay(400)
+            course=-1
             _swipeRefreshing.emit(false)
             _isLoading.emit(false)
         }

@@ -84,7 +84,7 @@ class FansFragment: Fragment() {
 
             launch {
                 fansViewModel.errorMessage.collect { errorMsg ->
-                    Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
+                 //   Toast.makeText(context, errorMsg, Toast.LENGTH_LONG).show()
                 }
             }
         }

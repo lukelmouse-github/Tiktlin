@@ -30,7 +30,6 @@ class FansViewModel: ViewModel()  {
         course++
         _fansUiData.emit(Repository.getFans(course,20))
         _isEmpty.emit(false)
-        _isLoading.emit(false)
     }
 
 
@@ -45,7 +44,8 @@ class FansViewModel: ViewModel()  {
             _swipeRefreshing.emit(true)
             _isLoading.emit(false)
             //代表首页的一个下拉刷新操作
-            delay(500)
+            course=0
+            _fansUiData.emit(Repository.getFans(course,20))
             _isLoading.emit(true)
             _swipeRefreshing.emit(false)
         }

@@ -12,8 +12,6 @@ import com.qxy.tiktlin.data.netData.Follows
 import com.qxy.tiktlin.databinding.ItemFollowBinding
 
 
-
-
 class FollowsAdapter(
     private val lifecycleOwner: LifecycleOwner
 ) : ListAdapter<Follows.Data.User, FollowViewHolder>(FollowDiff) {

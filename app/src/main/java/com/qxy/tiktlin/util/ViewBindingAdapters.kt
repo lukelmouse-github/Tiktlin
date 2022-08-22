@@ -11,11 +11,20 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.tiktlin.R
+import com.qxy.tiktlin.widget.CustomSwipeRefreshLayout
 
 
 @BindingAdapter("goneUnless")
 fun goneUnless(view: View, visible: Boolean) {
     view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+/**
+ * Sets the colors of the [CustomSwipeRefreshLayout] loading indicator.
+ */
+@BindingAdapter("swipeRefreshColors")
+fun setSwipeRefreshColors(swipeRefreshLayout: CustomSwipeRefreshLayout, colorResIds: IntArray) {
+    swipeRefreshLayout.setColorSchemeColors(*colorResIds)
 }
 
 @BindingAdapter("loadAvatar")

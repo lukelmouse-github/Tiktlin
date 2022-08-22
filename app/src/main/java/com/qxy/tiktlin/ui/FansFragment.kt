@@ -39,11 +39,11 @@ class FansFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel: FansViewModel by viewModels()
+        val fansViewModel: FansViewModel by viewModels()
 
         _binding = FragmentMeFansBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
-            viewModel = homeViewModel
+            viewModel = fansViewModel
         }
 
         homeRecyclerView = binding.recyclerviewFans

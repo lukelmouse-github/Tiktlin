@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class FollowsViewModel : ViewModel()  {
-    private val _isLoading = MutableStateFlow(false)
+    private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
 
     private val _isEmpty = MutableStateFlow(false)
@@ -25,8 +25,11 @@ class FollowsViewModel : ViewModel()  {
     private var course :Long=-1
 
     suspend fun get(){
+        _isLoading.emit(true)
         course++
         _followsUiData.emit(Repository.getFollows(course,20))
+        _isEmpty.emit(false)
+        _isLoading.emit(false)
     }
 
     private val _errorMessage = MutableStateFlow("")
@@ -39,12 +42,11 @@ class FollowsViewModel : ViewModel()  {
 
     fun onSwipeRefresh() {
         viewModelScope.launch {
-            _swipeRefreshing.emit(true)
-            _isLoading.emit(false)
-            //代表首页的一个下拉刷新操作
-            delay(500)
             _isLoading.emit(true)
+            _swipeRefreshing.emit(true)
+            delay(400)
             _swipeRefreshing.emit(false)
+            _isLoading.emit(false)
         }
     }
 }

@@ -34,7 +34,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:onRefreshListener="@{() -> viewModel.onSwipeRefresh()}"
-                app:refreshing="@{viewModel.swipeRefreshing}" />
+                app:refreshing="@{viewModel.swipeRefreshing}"
+                app:swipeRefreshColors="@{@intArray/swipe_refresh}"  >
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerview_follows"
@@ -48,6 +49,8 @@
                 app:layoutManager="LinearLayoutManager"
                 tools:listitem="@layout/item_follow" />
 
+            </com.qxy.tiktlin.widget.CustomSwipeRefreshLayout>
+
             <!--加载失败则显示-->
             <TextView
                 android:id="@+id/empty"
@@ -58,7 +61,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:goneUnless="@{!viewModel.isEmpty &amp;&amp; viewModel.isLoading}"
+                app:goneUnless="@{viewModel.isEmpty &amp;&amp; !viewModel.isLoading}"
                 tools:targetApi="o"
                 tools:visibility="visible" />
 

@@ -29,6 +29,8 @@ class FansViewModel: ViewModel()  {
     suspend fun get(){
         course++
         _fansUiData.emit(Repository.getFans(course,20))
+        _isEmpty.emit(false)
+        _isLoading.emit(false)
     }
 
 

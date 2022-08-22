@@ -43,6 +43,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
             android:contentDescription="@string/portrait"
             app:imageUrl="@{user.avatar}"
             app:placeholder="@{@drawable/default_user_avatar}"

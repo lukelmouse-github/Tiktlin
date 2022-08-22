@@ -2,9 +2,9 @@
 <resources>
     <dimen name="list_paddingBotton">8dp</dimen>
     <dimen name="lsit_paddingTop">8dp</dimen>
-    <dimen name="lsit_paddingStart">16dp</dimen>
+    <dimen name="lsit_paddingStart">15dp</dimen>
     <dimen name="user_gender_size">10dp</dimen>
-    <item name="middle_image_width_percent" type="dimen" format="float">0.25</item>
+    <item name="middle_image_width_percent" type="dimen" format="float">0.20</item>
     <item name="middle_image_heigh_percent" type="dimen" format="float">0.6</item>
     <item name="samll_image_width_percent" type="dimen" format="float">0.1</item>
     <dimen name="video_right_button_size">42dp</dimen>

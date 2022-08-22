@@ -1,5 +1,6 @@
 package com.qxy.tiktlin.util
 
+
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -10,6 +11,7 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.qxy.tiktlin.R
+
 
 @BindingAdapter("goneUnless")
 fun goneUnless(view: View, visible: Boolean) {
@@ -37,12 +39,15 @@ fun imageUri(imageView: ImageView, imageUri: Uri?, placeholder: Drawable?) {
         null -> {
             Glide.with(imageView)
                 .load(placeholder)
+                .fitCenter()
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageView)
         }
         else -> {
             Glide.with(imageView)
                 .load(imageUri)
-                .apply(RequestOptions().placeholder(placeholder))
+                .fitCenter()
+                .apply(RequestOptions.circleCropTransform())
                 .into(imageView)
         }
     }
